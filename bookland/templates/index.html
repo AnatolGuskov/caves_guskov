@@ -5,37 +5,15 @@
         table, th, td {
           border:0px solid black;
         }
-.tytle {
-        background: none;
+    .content {
+        background: rgb(210, 250, 240);
         border: 0px solid black;
         position: absolute;
-        left:0.0%;       top:35.0%;
-        width: 100.0%;   height: 8.0%;
-        padding-left: 10px;
-        color: rgb(31, 81, 255);
-    }
-
-    .info {
-        background: none;
-        border: 0px solid black;
-        position: absolute;
-        left:0.0%;       top:47.0%;
-        width: 40.0%;   height: 51.0%;
-        padding-left: 10px;
-        list-style: none;
-        color: rgb(31, 81, 255);
-    }
-
-    .new_book {
-        background: none;
-        border: 0px solid black;
-        position: absolute;
-        left:48.0%;       top:47.0%;
-        width: 52.0%;   height: 51.0%;
-        padding-left: 10px; padding-top: 10px;
-        list-style: none;
-        color: black;
-    }
+        left:0.0%;       top:0px;
+        width: 100.0%;   height: 100.0%;
+        padding-left: 10;
+        overflow: auto
+        }
 
     .side_right_poem {
         background: none;
@@ -67,9 +45,11 @@
 {% load static %}
 
 {% block content %}
+<div class = "content">
 
-<img src="{% static 'image/tytle.jpg' %}" alt="From Bakla"
-     style="width:100%;"/>
+    <img src="{% static 'image/tytle.jpg' %}" alt="Tytle" style="width:100%;"/>
+
+</div>
 
 {% endblock %}
 

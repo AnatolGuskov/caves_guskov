@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sites of Register</title>
+
+
+    <style>
+    table, th, td {
+          border: 0px solid black;
+          vertical-align: top;
+        }
+
+    .seites_list {
+        background: none;
+        overflow: auto;
+        border: 5px solid white;
+        position: absolute;
+        left:0.0%;       top:0.0%;
+        width: 100.0%;   height: 100.0%;
+        padding-left: 0px;
+        overflow: auto;
+        color: blue;
+    }
+
+    .side_right_tytle {
+        background: none;
+        border: 0px solid white;
+        position: absolute;
+        left:101.0%;       top: 0.0%;
+        width: 29.0%;   height: 7.0%;
+        padding-left: 0;
+        color: blue;
+    }
+
+    .side_right_register {
+        background: none;
+        border: 0px solid white;
+        overflow: auto;
+        position: absolute;
+        left:101.0%;       top: 13.0%;
+        width: 29.0%;   height: 90.0%;
+        padding-left: 0;
+        color: blue;
+    }
+
+
+     </style>
+
+<!--    <meta charset="UTF-8">-->
+</head>
+
+<body>
+    {% extends "base_generic.html" %}
+    {% load static %}
+
+{% block content %}
+
+
+<div class="seites_list">
+    {% if reg_seites %}
+
+    {% for seite in reg_seites.reg_seites.all %}
+        <h5>&nbsp;&nbsp; стор. {{ seite.seites }} &nbsp; <b>{{ seite.name_seites1 }}&nbsp;{{ seite.name_seites }}</b></h5>
+        <img src="{% static seite.image_seites %}" alt="{{ seite.name_seites }}"
+                     style="width:100%;"/>
+        <br> <br>
+    {% endfor %}
+
+    {% else %}
+    <p>There are no list of seites</p>
+    {% endif %}
+</div>  <!-- seites_list -->
+
+<div class="side_right_tytle">
+      <h5 style = "color: red">  <b>{{reg_name}},</b> {{ reg_num }}</h5>
+         <h5> <b>{{reg_art}}</b> </h5>
+</div>  <!-- side_right_tytle -->
+
+<div class="side_right_register">
+
+{% for reg_name in reg_name_list %}
+    <a href="{% url 'bookland:register-seites' reg_name.id reg_art %}">
+       <b style = "line-height: 0.5; font-size: 12px"> &nbsp;&nbsp;&nbsp;{{reg_name.reg_f_name}},&nbsp;{{reg_name.reg_s_name}}</b></a><br>
+{% endfor %}
+
+</div> <!-- side_right_register -->
+
+
+{% endblock %}
+
+
+</head>
+</body>
+
+
+</html>

@@ -1,0 +1,137 @@
+<!--TEMPLATE CAVECITIES-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    {% block title %}<title>Title</title>{% endblock %}
+
+    <meta charset="utf-8">
+    <!-- Responsibilaty -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Сompiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Сompiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <style>
+
+    .side_left {
+        background: yellow;
+        border: 0px solid black;
+        position: absolute;
+        left:1.1%;       top:0%;
+        width: 14%;   height: 98.0%;
+        padding-left: 0;
+        list-style: none;
+    }
+    .side_right {
+        background: yellow;
+        border: 0px solid black;
+        position: absolute;
+        left:79.0%;       top:0px;
+        width: 20.0%;   height: 98.0%;
+        padding-left: 0;
+        list-style: none;
+    }
+
+    .content {
+        background: rgb(210, 250, 240);
+        border: 0px solid black;
+        position: absolute;
+        left:15.0%;       top:0px;
+        width: 64.0%;   height: 98.0%;
+        padding-left: 20;
+
+    }
+
+    .menu {
+        background: none;
+        border: 0px solid black;
+        position: absolute;
+        left:8.0%;       top:4.0%;
+        width: 80%;   height:;
+        padding-left: 0;
+        list-style: none;
+    }
+    .menu_ukr {
+        background: none;
+        border: 0px solid black;
+        position: absolute;
+        left:8.0%;       top:0.0%;
+        width: 80%;   height:;
+        padding-left: 0;
+        list-style: none;
+    }
+    .copy_right {
+        border: 0px solid black;
+        position: absolute;
+        left:8.0%;       top:86.0%;
+    }
+
+    </style>
+
+    <!-- Добавление дополнительного статического CSS файла -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles_cave.css' %}">
+
+</head>
+
+<body>
+<!--<div class="container-fluid">-->
+      {% block sidebar %}
+<div class="side_left">
+
+      <img src="{% static 'image/panel_left.png' %}" alt="Chatyrdag_left"
+                 style="width:100%;height:100%;"/>
+
+      <div class="menu_ukr">
+           <h5 style ="color: blue;"><b>Головне меню</b></h5>
+        <li><a href="{% url 'bookland:index' %}"><strong>Домашня</strong></a></li>
+        <li><a href="{% url 'bookland:seites' 1 %}"><strong>Сторінки Книги</strong></a></li>
+        <li><a href="{% url 'bookland:register-art' 1 %}"><strong>Географічні назви</strong></a></li>
+        <li><a href="{% url 'bookland:register-art' 2 %}"><strong>Населені пункти</strong></a></li>
+        <li><a href="{% url 'bookland:register-art' 3 %}"><strong>Туристичні об'єкти</strong></a></li>
+
+
+
+    </div>  <!-- menu_ukr -->
+
+      <div class="copy_right">
+
+          <p style="line-height: 50%; font-size: 12px; color: white">
+              <b> &#169 Anatoliy Guskov </b> </p>
+          <p style="line-height: 50%; font-size: 11px; color: white">
+              &nbsp;&nbsp;&nbsp;&nbsp;Version: Mai 2022  </p>
+          <p style="line-height: 50%; font-size: 11px; color: white">
+              &nbsp;&nbsp;&nbsp;&nbsp;dkgb@i.ua </p>
+          <p style="line-height: 50%; font-size: 11px; color: white">
+             &nbsp;&nbsp;&nbsp;&nbsp;+380 97 760 4885 </p>
+      </div>  <!-- copy_right  -->
+
+
+</div> <!-- side_left -->
+
+<div class="side_right">
+    <img src="{% static 'image/panel_right.png' %}" alt="Chatyrdag_right"
+                 style="width:100%;height:100%;"/>
+
+</div> <!-- side_right -->
+
+ {% endblock %} <!-- sidebar -->
+
+      <div class="content">
+      {% block content %}
+
+      {% endblock %}
+      </div>  <!-- content -->
+
+
+<!--</div>  &lt;!&ndash; container-fluid &ndash;&gt;-->
+
+</body>
+
+</html>

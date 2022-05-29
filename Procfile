@@ -1,1 +1,1 @@
-web: gunicorn mytestsite.wsgi
+web: gunicorn caveguskov.wsgi

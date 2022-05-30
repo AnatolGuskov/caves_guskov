@@ -5,7 +5,7 @@
         table, th, td {
           border:0px solid black;
         }
-    .content {
+    .seites_list {
         background: rgb(210, 250, 240);
         border: 0px solid black;
         position: absolute;
@@ -26,13 +26,7 @@
         color: blue;
     }
 
-    .name_image {
-        position: absolute;
-        left: 60.0%;     top: 32.0%;
-        width: 37.0%;
-        font-size: 12px; font-style: italic; text-align: right;
-        color: white;
-    }
+
 
         </style>
     <meta charset="UTF-8">
@@ -45,11 +39,12 @@
 {% load static %}
 
 {% block content %}
-<div class = "content">
+
+<div class = "seites_list">
 
     <img src="{% static 'image/tytle.jpg' %}" alt="Tytle" style="width:100%;"/>
 
-</div>
+</div>  <!-- seites_list -->
 
 {% endblock %}
 

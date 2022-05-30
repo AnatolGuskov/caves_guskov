@@ -7,9 +7,10 @@
 
     <style>
     table, th, td {
-          border: 0px solid black;
+          border: 0px solid white;
           vertical-align: top;
         }
+
 
     .seites_list {
         background: none;
@@ -39,7 +40,7 @@
         overflow: auto;
         position: absolute;
         left:101.0%;       top: 7.0%;
-        width: 29.0%;   height: 90.0%;
+        width: 31.0%;   height: 90.0%;
         padding-left: 0;
         color: blue;
     }
@@ -73,12 +74,25 @@
 
 <div class="side_right_seites">
 
+
+
 {% for seite in seites_menu %}
    {% if seite.name_step == "1" %}
-        <h6> <b>{{seite.name_seites1}}</b> </h6>
+   <h5><b>{{seite.name_seites1}}</b></h5>
    {% endif %}
-   <a href="{% url 'bookland:seites' seite.id %}" >
-           <b style = "font-size: 12px"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ seite.name_seites }} </b></a><br>
+
+<table style="width: 100.0%;" >
+   <tr vertical-align = middle>
+   <td style="width:25.0%; font-size: 14px" align="right" vertical-align = middle >
+       <a href="{% url 'bookland:seites' seite.id %}" >
+       <b style = "font-size: 12px" > {{ seite.seites }} </b></a>
+       </td>
+   <td align="left"> <b style = "font-size: 13px" vertical-align = top>
+       &nbsp;&nbsp; {{ seite.name_seites }} </b> </td>
+   </tr>
+
+</table>
+
 {% endfor %}
 </div> <!-- side_right_seites -->
 

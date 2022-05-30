@@ -30,7 +30,6 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY',
 DEBUG = bool(os.environ.get('DJANGcO_DEBUG', True) )
 
 ALLOWED_HOSTS = ['caves-guskov.herokuapp.com',
-                 '0.0.0.0',
                  '127.0.0.1',
                  ]
 

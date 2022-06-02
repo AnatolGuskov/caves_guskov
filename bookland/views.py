@@ -20,8 +20,14 @@ def index(request):
 
 # ================== SITES  ===========================
 def seites(request, pk):
-    seites_list = Bookseites.objects.all().filter(id__gte = pk)
+    seites_list = Bookseites.objects.all().filter(id__gte = pk)[:10]
     seites_menu = Bookseites.objects.all()
+    max_seit = len(seites_list)
+    seit_max = seites_list[max_seit - 1].id
+    if max_seit == 1:
+        text = "ОСТАННЯ СТОРІНКА виборки"
+    else:
+        text = "ДАЛІ - наступні сторінки ... "
 
 
 
@@ -30,6 +36,8 @@ def seites(request, pk):
         context = {
             'seites_list': seites_list,
             'seites_menu': seites_menu,
+            'seit_max': seit_max,
+            'text': text,
         }
            )
 

@@ -28,6 +28,9 @@ def seites(request, pk):
         text = "ОСТАННЯ СТОРІНКА виборки"
     else:
         text = "ДАЛІ - наступні сторінки ... "
+    if max_seit == 72:
+        text = "ОСТАННЯ СТОРІНКА книги"
+
 
 
 
@@ -40,6 +43,23 @@ def seites(request, pk):
             'text': text,
         }
            )
+
+# ================== END seites  ===========================
+
+# ================== ZOOM_SEITE  ===========================
+def zoom_seite(request, pk):
+
+    zoom_seite = Bookseites.objects.get(pk = pk)
+
+    return render(
+        request, 'zoom_seite.html',
+        context = {
+            'zoom_seite': zoom_seite,
+
+        }
+           )
+
+# ================== END zoom_seite  ===========================
 
 # ================== REGISTER ART ===========================
 def register_art(request, art):

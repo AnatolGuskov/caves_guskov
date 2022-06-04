@@ -24,31 +24,32 @@
         border: 0px solid black;
         position: absolute;
         left:0%;       top:0%;
-        width: 15%;   height: 98.0%;
+        width: 12%;   height: 98.0%;
         padding-left: 0;
         list-style: none;
     }
+
+     .content {
+        background: rgb(175, 175, 200);
+        border: 0px solid black;
+        position: absolute;
+        left:12.15%;       top:0px;
+        width: 63.7%;   height: 98.0%;
+        padding-left: 20;
+     }
+
     .side_right {
         background: yellow;
         border: 0px solid black;
         position: absolute;
-        left:79.2%;       top:0px;
-        width: 20.0%;   height: 98.0%;
+        left:76.0%;       top:0px;
+        width: 24.0%;   height: 98.0%;
         padding-left: 0;
         list-style: none;
     }
 
-    .content {
-        background: rgb(210, 250, 240);
-        border: 0px solid black;
-        position: absolute;
-        left:15.2%;       top:0px;
-        width: 63.7%;   height: 98.0%;
-        padding-left: 20;
 
 
-
-    }
 
     .menu {
         background: none;
@@ -67,11 +68,12 @@
         width: 80%;   height:;
         padding-left: 0;
         list-style: none;
+        color: white;
     }
     .copy_right {
         border: 0px solid black;
         position: absolute;
-        left:8.0%;       top:86.0%;
+        left:7.0%;       top:86.0%;
     }
 
     </style>
@@ -87,16 +89,16 @@
       {% block sidebar %}
 <div class="side_left">
 
-      <img src="{% static 'image/panel_left.png' %}" alt="Chatyrdag_left"
+      <img src="{% static 'image/Kule1_left.jpg' %}" alt="Chatyrdag_left"
                  style="width:100%;height:100%;"/>
 
       <div class="menu_ukr">
-           <h5 style ="color: blue;"><b>Головне меню</b></h5>
-        <li><a href="{% url 'bookland:index' %}"><strong>Домашня</strong></a></li>
-        <li><a href="{% url 'bookland:seites' 1 %}"><strong>Сторінки Книги</strong></a></li>
-        <li><a href="{% url 'bookland:register-art' 1 %}"><strong>Географічні назви</strong></a></li>
-        <li><a href="{% url 'bookland:register-art' 2 %}"><strong>Населені пункти</strong></a></li>
-        <li><a href="{% url 'bookland:register-art' 3 %}"><strong>Туристичні об'єкти</strong></a></li>
+           <h5 style ="color: white;"><b>Головне меню</b></h5>
+        <li><a href="{% url 'bookland:index' %}"><strong>[X]&nbsp;</strong></a>Домашня</li>
+        <li><a href="{% url 'bookland:seites' 1 %}"><strong>[X]&nbsp;</strong></a>Сторінки Книги</li>
+        <li><a href="{% url 'bookland:register-art' 1 %}"><strong>[X]&nbsp;</strong></a>Географічні назви</li>
+        <li><a href="{% url 'bookland:register-art' 2 %}"><strong>[X]&nbsp;</strong></a>Населені пункти</li>
+        <li><a href="{% url 'bookland:register-art' 3 %}"><strong>[X]&nbsp;</strong></a>Туристичні об'єкти</li>
 
 
 
@@ -118,7 +120,7 @@
 </div> <!-- side_left -->
 
 <div class="side_right">
-    <img src="{% static 'image/panel_right.png' %}" alt="Chatyrdag_right"
+    <img src="{% static 'image/Kule3_right.jpg' %}" alt="Chatyrdag_right"
                  style="width:100%;height:100%;"/>
 
 </div> <!-- side_right -->

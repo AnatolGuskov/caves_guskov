@@ -14,13 +14,23 @@
     .seites_list {
         background: none;
         overflow: auto;
-        border: 5px solid white;
+        border: 0px solid white;
         position: absolute;
-        left:0.0%;       top:0.0%;
+        left:0.0%;       top:7.0%;
         width: 100.0%;   height: 100.0%;
         padding-left: 0px;
         overflow: auto;
-        color: blue;
+        color: white;
+    }
+
+    .list_tytle {
+        background: rgb(135, 135, 180);
+        border: 0px solid white;
+        position: absolute;
+        left:0.0%;       top: 0.0%;
+        width: 99.9%;   height: 7.0%;
+        padding-left: 0;
+        color: white;
     }
 
     .side_right_tytle {
@@ -28,9 +38,9 @@
         border: 0px solid white;
         position: absolute;
         left:101.0%;       top: 0.0%;
-        width: 29.0%;   height: 7.0%;
+        width: 36.0%;   height: 7.0%;
         padding-left: 0;
-        color: blue;
+        color: white;
     }
 
     .side_right_register {
@@ -38,10 +48,10 @@
         border: 0px solid white;
         overflow: auto;
         position: absolute;
-        left:101.0%;       top: 13.0%;
-        width: 29.0%;   height: 90.0%;
+        left:101.0%;       top: 7.0%;
+        width: 36.0%;   height: 90.0%;
         padding-left: 0;
-        color: blue;
+        color: white;
     }
 
 
@@ -72,16 +82,22 @@
     {% endif %}
 </div>  <!-- seites_list -->
 
+<div class="list_tytle">
+    <h4 style = "color: white">  <b>&nbsp;&nbsp;{{reg_name}},</b> {{ reg_num }}</h4>
+
+</div>  <!-- list_tytle -->
+
+
 <div class="side_right_tytle">
-      <h5 style = "color: red">  <b>{{reg_name}},</b> {{ reg_num }}</h5>
-         <h5> <b>{{reg_art}}</b> </h5>
+        <h5> <b>{{reg_art}}</b> </h5>
 </div>  <!-- side_right_tytle -->
 
 <div class="side_right_register">
 
 {% for reg_name in reg_name_list %}
     <a href="{% url 'bookland:register-seites' reg_name.id reg_art %}">
-       <b style = "line-height: 0.5; font-size: 12px"> &nbsp;&nbsp;&nbsp;{{reg_name.reg_f_name}},&nbsp;{{reg_name.reg_s_name}}</b></a><br>
+       <b style = "line-height: 0.5; font-size: 12px"> &nbsp;[X]&nbsp;</b></a>
+           {{reg_name.reg_f_name}},&nbsp;{{reg_name.reg_s_name}}<br>
 {% endfor %}
 
 </div> <!-- side_right_register -->

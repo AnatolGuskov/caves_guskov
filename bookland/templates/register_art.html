@@ -19,18 +19,18 @@
         left:0.0%;       top:0.0%;
         width: 100.0%;   height: 100.0%;
         padding-left: 0px;
-        overflow: auto;
+        overflow: none;
         color: blue;
     }
 
-    .side_right_tytle {
+    .center_tytle {
         background: none;
         border: 0px solid white;
         position: absolute;
-        left:101.0%;       top: 0.0%;
-        width: 29.0%;   height: 7.0%;
+        left:2.0%;       top: 0.0%;
+        width: 33.0%;   height: 7.0%;
         padding-left: 0;
-        color: blue;
+        color: white;
     }
 
     .side_right_register {
@@ -38,10 +38,10 @@
         border: 0px solid white;
         overflow: auto;
         position: absolute;
-        left:101.0%;       top: 7.0%;
-        width: 29.0%;   height: 90.0%;
+        left:101.0%;       top: 2.0%;
+        width: 36.0%;   height: 90.0%;
         padding-left: 0;
-        color: blue;
+        color: white;
     }
 
 
@@ -56,25 +56,21 @@
 
 {% block content %}
 
-{% if reg_name_list %}
-<!--<div class="seites_list">-->
-<!--      {% for seite in seites_list %}-->
-<!--        <h5>&nbsp;&nbsp; стор. {{ seite.seites }} &nbsp; <b>{{ seite.name_seites1 }}&nbsp;{{ seite.name_seites }}</b></h5>-->
-<!--        <img src="{% static seite.image_seites %}" alt="{{ seite.name_seites }}"-->
-<!--                     style="width:100%;"/>-->
-<!--        <br> <br>-->
-<!--      {% endfor %}-->
-<!--</div>  &lt;!&ndash; seites_list &ndash;&gt;-->
+<img src="{% static 'image/Kule2_center.jpg' %}" alt="Kuleburun_ctnter"
+                 style="width:100%;height:100%;"/>
 
-<div class="side_right_tytle">
-         <h5> <b>{{reg_art}}</b> </h5>
-</div>  <!-- side_right_tytle -->
+<div class="center_tytle">
+         <h4> <b>{{reg_art}}</b> </h4>
+</div>  <!-- center_tytle -->
+
+    {% if reg_name_list %}
 
 <div class="side_right_register">
 
 {% for reg_name in reg_name_list %}
     <a href="{% url 'bookland:register-seites' reg_name.id reg_art %}">
-       <b style = "line-height: 0.5; font-size: 12px"> &nbsp;&nbsp;&nbsp;{{reg_name.reg_f_name}},&nbsp;{{reg_name.reg_s_name}}</b></a><br>
+       <b style = "line-height: 0.5; font-size: 12px"> &nbsp;[X]&nbsp;</b></a>
+           {{reg_name.reg_f_name}},&nbsp;{{reg_name.reg_s_name}}<br>
 {% endfor %}
 
 </div> <!-- side_right_register -->

@@ -2,26 +2,27 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Sites of Book</title>
+    <title>Sites of the Book</title>
 
 
     <style>
     table, th, td {
           border: 0px solid white;
           vertical-align: top;
+          color: white;
         }
 
 
     .seites_list {
         background: none;
         overflow: auto;
-        border: 5px solid white;
+        border: 0px solid white;
         position: absolute;
         left:0.0%;       top:0.0%;
         width: 100.0%;   height: 100.0%;
         padding-left: 0px;
         overflow: auto;
-        color: blue;
+        color: white;
     }
 
     .side_right_tytle {
@@ -29,9 +30,9 @@
         border: 0px solid white;
         position: absolute;
         left:101.0%;       top: 0.0%;
-        width: 29.0%;   height: 7.0%;
+        width: 36.0%;   height: 7.0%;
         padding-left: 0;
-        color: blue;
+        color: white;
     }
 
     .side_right_seites {
@@ -40,11 +41,10 @@
         overflow: auto;
         position: absolute;
         left:101.0%;       top: 7.0%;
-        width: 31.0%;   height: 90.0%;
+        width: 36.0%;   height: 90.0%;
         padding-left: 0;
-        color: blue;
+        color: white;
     }
-
 
      </style>
 
@@ -60,7 +60,8 @@
 {% if seites_list %}
 <div class="seites_list">
       {% for seite in seites_list %}
-        <h5>&nbsp;&nbsp; стор. {{ seite.seites }} &nbsp; <b>{{ seite.name_seites1 }}&nbsp;{{ seite.name_seites }}</b></h5>
+        <h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; стор. {{ seite.seites }} &nbsp; <b>{{ seite.name_seites1 }}&nbsp;{{ seite.name_seites }}</b>
+         &nbsp; <a href="{% url 'bookland:zoom' seite.id %}"><strong>&nbsp;&nbsp;&nbsp;[X]&nbsp;</strong></a>Збільшити</h5>
         <img src="{% static seite.image_seites %}" alt="{{ seite.name_seites }}"
                      style="width:100%;"/>
         <br> <br>
@@ -70,16 +71,13 @@
        <b style = "font-size: 12px" > {{ text }} </b></a>
     <br> <br>
 
-
 </div>  <!-- seites_list -->
 
 <div class="side_right_tytle">
-         <h5> <b>Зміст Книги</b> </h5>
+         <h4> <b>Зміст Книги</b> </h4>
 </div>  <!-- side_right_tytle -->
 
 <div class="side_right_seites">
-
-
 
 {% for seite in seites_menu %}
    {% if seite.name_step == "1" %}
@@ -88,14 +86,13 @@
 
 <table style="width: 100.0%;" >
    <tr vertical-align = middle>
-   <td style="width:25.0%; font-size: 14px" align="right" vertical-align = middle >
+   <td style="width:22.0%; font-size: 14px" align="right" vertical-align = middle >
        <a href="{% url 'bookland:seites' seite.id %}" >
-       <b style = "font-size: 12px" > {{ seite.seites }} </b></a>
+       <b style = "font-size: 14px" > {{ seite.seites }} </b></a>
        </td>
-   <td align="left"> <b style = "font-size: 13px" vertical-align = top>
-       &nbsp;&nbsp; {{ seite.name_seites }} </b> </td>
+   <td style="width:3.0%"> </td>
+   <td align="left" style = "font-size: 13px"> {{ seite.name_seites }}  </td>
    </tr>
-
 </table>
 
 {% endfor %}

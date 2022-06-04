@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Zoom of the Site</title>
+
+
+    <style>
+    table, th, td {
+          border: 0px solid white;
+          vertical-align: top;
+          color: white;
+        }
+
+
+    .seite_zoom {
+        background: none;
+        overflow: auto;
+        border: 0px solid white;
+        position: absolute;
+        left:-20%;       top:0.0%;
+        width: 120%;   height: 100.0%;
+        padding-left: 0px;
+        overflow: auto;
+        color: white;
+    }
+
+    .side_right_tytle {
+        background: none;
+        border: 0px solid white;
+        position: absolute;
+        left:101.0%;       top: 0.0%;
+        width: 36.0%;   height: 7.0%;
+        padding-left: 0;
+        color: white;
+    }
+
+    .side_right_seites {
+        background: none;
+        border: 0px solid white;
+        overflow: auto;
+        position: absolute;
+        left:101.0%;       top: 7.0%;
+        width: 36.0%;   height: 90.0%;
+        padding-left: 0;
+        color: white;
+    }
+
+     </style>
+
+<!--    <meta charset="UTF-8">-->
+</head>
+
+<body>
+    {% extends "base_generic.html" %}
+    {% load static %}
+
+{% block content %}
+
+
+<div class="seite_zoom">
+
+      <img src="{% static zoom_seite.image_seites %}" alt="{{ zoom_seite.name_seites }}"
+                     />
+
+</div>  <!-- seite_zoom -->
+
+
+<div class="side_right_tytle">
+     <h5> <a href="{% url 'bookland:seites' zoom_seite.id %}"><strong>[X]&nbsp;</strong></a>Назад</h5>
+</div>  <!-- side_right_tytle -->
+
+<div class="side_right_seites">
+</div> <!-- side_right_seites -->
+
+
+
+{% endblock %}
+
+
+</head>
+</body>
+
+
+</html>

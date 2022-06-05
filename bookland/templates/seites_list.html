@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Sites of the Book</title>
+    <title>SitesList of the Book</title>
 
 
     <style>
     table, th, td {
-          border: 0px solid white;
+          border: 1px solid white;
           vertical-align: top;
-          color: yellow;
+          color: white;
         }
 
 
@@ -22,16 +22,6 @@
         width: 100.0%;   height: 100.0%;
         padding-left: 0px;
         overflow: auto;
-        color: white;
-    }
-
-    .center_tytle {
-        background: none;
-        border: 0px solid white;
-        position: absolute;
-        left:2.0%;       top: 0.0%;
-        width: 50.0%;   height: 7.0%;
-        padding-left: 0;
         color: white;
     }
 
@@ -67,12 +57,30 @@
 
 {% block content %}
 
-<img src="{% static 'image/Kule2_center.jpg' %}" alt="Kuleburun_ctnter"
-                 style="width:100%;height:100%;"/>
+{% if seites_list %}
+<div class="seites_list">
 
-<div class="center_tytle">
-         <h4> <b>Перегляд сторінок Книги</b> </h4>
-</div>  <!-- center_tytle -->
+      {% for seite in seites_list %}
+    <table style="width: 98.0%; color: white">
+        <tr>
+            <td style="width:80.0%; font-size: 14px" >
+                &nbsp;&nbsp;стор. {{ seite.seites }} &nbsp; <b>{{ seite.name_seites1 }}&nbsp;{{ seite.name_seites }}</b></td>
+            <td align="right" >
+                <a href="{% url 'bookland:zoom' seite.id %}"><strong>[X]&nbsp;</strong></a>Збільшити</td>
+        </tr>
+    </table>
+
+
+        <img src="{% static seite.image_seites %}" alt="{{ seite.name_seites }}"
+                     style="width:100%;"/>
+        <br> <br>
+      {% endfor %}
+
+    <a href="{% url 'bookland:seites-list' seit_max %}" >
+       <b style = "font-size: 12px" > {{ text }} </b></a>
+    <br> <br>
+
+</div>  <!-- seites_list -->
 
 <div class="side_right_tytle">
          <h4> <b>Зміст Книги</b> </h4>
@@ -99,6 +107,9 @@
 {% endfor %}
 </div> <!-- side_right_seites -->
 
+    {% else %}
+    <p>There are no seites in the library.</p>
+{% endif %}
 
 {% endblock %}
 

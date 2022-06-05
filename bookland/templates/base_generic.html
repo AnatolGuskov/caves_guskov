@@ -18,13 +18,18 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <style>
+    table, th, td {
+          border: 0px solid white;
+          vertical-align: top;
+          color: yellow;
+        }
 
     .side_left {
         background: yellow;
         border: 0px solid black;
         position: absolute;
-        left:0%;       top:0%;
-        width: 12%;   height: 98.0%;
+        left:0.0%;       top:0%;
+        width: 13.0%;   height: 98.0%;
         padding-left: 0;
         list-style: none;
     }
@@ -33,8 +38,8 @@
         background: rgb(175, 175, 200);
         border: 0px solid black;
         position: absolute;
-        left:12.15%;       top:0px;
-        width: 63.7%;   height: 98.0%;
+        left:13.15%;       top:0px;
+        width: 62.65%;   height: 98.0%;
         padding-left: 20;
      }
 
@@ -48,32 +53,21 @@
         list-style: none;
     }
 
-
-
-
-    .menu {
-        background: none;
-        border: 0px solid black;
-        position: absolute;
-        left:8.0%;       top:4.0%;
-        width: 80%;   height:;
-        padding-left: 0;
-        list-style: none;
-    }
     .menu_ukr {
         background: none;
         border: 0px solid black;
         position: absolute;
-        left:8.0%;       top:0.0%;
-        width: 80%;   height:;
+        left:3.0%;       top:0.0%;
+        width: 96%;   height:;
         padding-left: 0;
         list-style: none;
-        color: white;
+        color: yellow;
     }
     .copy_right {
         border: 0px solid black;
         position: absolute;
         left:7.0%;       top:86.0%;
+        color: yellow;
     }
 
     </style>
@@ -93,27 +87,51 @@
                  style="width:100%;height:100%;"/>
 
       <div class="menu_ukr">
-           <h5 style ="color: white;"><b>Головне меню</b></h5>
-        <li><a href="{% url 'bookland:index' %}"><strong>[X]&nbsp;</strong></a>Домашня</li>
-        <li><a href="{% url 'bookland:seites' 1 %}"><strong>[X]&nbsp;</strong></a>Сторінки Книги</li>
-        <li><a href="{% url 'bookland:register-art' 1 %}"><strong>[X]&nbsp;</strong></a>Географічні назви</li>
-        <li><a href="{% url 'bookland:register-art' 2 %}"><strong>[X]&nbsp;</strong></a>Населені пункти</li>
-        <li><a href="{% url 'bookland:register-art' 3 %}"><strong>[X]&nbsp;</strong></a>Туристичні об'єкти</li>
+           <h5><b>Головне меню</b></h5>
 
+<table style="width: 105.0%; line-height: 1.2; vertical-align: baseline;" >
+    <tr>
+        <td style="width:19.0%; font-size: 14px" >
+            <a href="{% url 'bookland:index'  %}"><strong>[X]</strong></a> </td>
+        <td style="width:3.0%">&nbsp;</td>
+        <td align="left" style = "font-size: 13px"><b> Домашня </b></td>
+   </tr>
+    <tr>
+        <td> <a href="{% url 'bookland:seites' %}"><strong>[X]</strong></a> </td>
+        <td> </td>
+        <td><b> Сторінки Книги </b></td>
+   </tr>
+   <tr>
+        <td> <a href="{% url 'bookland:register-art' 1 %}"><strong>[X]</strong></a> </td>
+        <td> </td>
+        <td><b> Географічні назви </b></td>
+   </tr>
+   <tr>
+        <td> <a href="{% url 'bookland:register-art' 2 %}"><strong>[X]</strong></a> </td>
+        <td> </td>
+        <td><b> Населені пункти </b></td>
+   </tr>
+   <tr>
+        <td> <a href="{% url 'bookland:register-art' 3 %}"><strong>[X]</strong></a> </td>
+        <td> </td>
+        <td><b> Туристичні об'єкти </b></td>
+   </tr>
+
+</table>
 
 
     </div>  <!-- menu_ukr -->
 
       <div class="copy_right">
 
-          <p style="line-height: 50%; font-size: 12px; color: white">
+          <p style="line-height: 50%; font-size: 11px;">
               <b> &#169 Anatoliy Guskov </b> </p>
-          <p style="line-height: 50%; font-size: 11px; color: white">
+          <p style="line-height: 50%; font-size: 10px;">
               &nbsp;&nbsp;&nbsp;&nbsp;Version: Mai 2022  </p>
-          <p style="line-height: 50%; font-size: 11px; color: white">
+          <p style="line-height: 50%; font-size: 10px;">
               &nbsp;&nbsp;&nbsp;&nbsp;dkgb@i.ua </p>
-          <p style="line-height: 50%; font-size: 11px; color: white">
-             &nbsp;&nbsp;&nbsp;&nbsp;+380 97 760 4885 </p>
+          <p style="line-height: 50%; font-size: 10px;">
+             &nbsp;&nbsp;+380 97 760 4885 </p>
       </div>  <!-- copy_right  -->
 
 

@@ -14,7 +14,8 @@ app_name = 'bookland'
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('seites/<pk>', views.seites, name='seites'),
+    path('seites/', views.seites, name='seites'),
+    path('seites/<pk>', views.seites_list, name='seites-list'),
     path('zoom/<pk>', views.zoom_seite, name='zoom'),
 
     path('register/<art>', views.register_art, name='register-art'),

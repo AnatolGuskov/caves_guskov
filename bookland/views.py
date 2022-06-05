@@ -17,9 +17,21 @@ def index(request):
             'name': "Anatoly",
         }
            )
-
 # ================== SITES  ===========================
-def seites(request, pk):
+def seites(request):
+    seites_menu = Bookseites.objects.all()
+
+    return render(
+        request, 'seites.html',
+        context = {
+              'seites_menu': seites_menu,
+                  }
+           )
+
+# ================== END seites  ===========================
+
+# ================== SITES_LIST  ===========================
+def seites_list(request, pk):
     seites_list = Bookseites.objects.all().filter(id__gte = pk)[:10]
     seites_menu = Bookseites.objects.all()
     max_seit = len(seites_list)
@@ -31,11 +43,8 @@ def seites(request, pk):
     if max_seit == 72:
         text = "ОСТАННЯ СТОРІНКА книги"
 
-
-
-
     return render(
-        request, 'seites.html',
+        request, 'seites_list.html',
         context = {
             'seites_list': seites_list,
             'seites_menu': seites_menu,
@@ -43,8 +52,7 @@ def seites(request, pk):
             'text': text,
         }
            )
-
-# ================== END seites  ===========================
+# ================== END seites_list  ===========================
 
 # ================== ZOOM_SEITE  ===========================
 def zoom_seite(request, pk):

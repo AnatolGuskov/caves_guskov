@@ -37,8 +37,8 @@
         background: none;
         border: 0px solid white;
         position: absolute;
-        left:101.0%;       top: 0.0%;
-        width: 36.0%;   height: 7.0%;
+        left:101.5%;       top: 0.0%;
+        width: 35.5%;   height: 7.0%;
         padding-left: 0;
         color: yellow;
     }
@@ -48,8 +48,8 @@
         border: 0px solid white;
         overflow: auto;
         position: absolute;
-        left:101.0%;       top: 7.0%;
-        width: 36.0%;   height: 90.0%;
+        left:101.5%;       top: 7.0%;
+        width: 35.5%;   height: 92.0%;
         padding-left: 0;
         color: yellow;
     }
@@ -83,7 +83,7 @@
 </div>  <!-- seites_list -->
 
 <div class="list_tytle">
-    <h4 style = "color: white">  <b>&nbsp;&nbsp;{{reg_name}},</b> {{ reg_num }}</h4>
+    <h4 style = "color: white">  <b>&nbsp;&nbsp;{{reg_name}}</b> &nbsp;&nbsp;{{ reg_num }}</h4>
 
 </div>  <!-- list_tytle -->
 
@@ -95,9 +95,19 @@
 <div class="side_right_register">
 
 {% for reg_name in reg_name_list %}
-    <a href="{% url 'bookland:register-seites' reg_name.id reg_art %}">
-       <b style = "line-height: 0.5; font-size: 12px"> &nbsp;[X]&nbsp;</b></a>
-           {{reg_name.reg_f_name}},&nbsp;{{reg_name.reg_s_name}}<br>
+<table style="width: 100.0%; line-height: 1.2; vertical-align: baseline;" >
+   <tr>
+   <td style="width:10.0%; font-size: 14px" align="right" >
+       <a href="{% url 'bookland:register-seites' reg_name.id reg_art %}" >
+       <b style = "font-size: 14px" > [X] </b></a>
+       </td>
+   <td style="width:3.0%"> </td>
+   <td align="left" style = "font-size: 13px">
+       {{reg_name.reg_f_name}} </td>
+   </tr>
+</table>
+
+
 {% endfor %}
 
 </div> <!-- side_right_register -->

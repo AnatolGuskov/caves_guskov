@@ -19,7 +19,7 @@
         border: 0px solid white;
         position: absolute;
         left:-21%;       top:0.0%;
-        width: 120%;   height: 100.0%;
+        width: 121%;   height: 100.0%;
         padding-left: 0px;
         overflow: auto;
         color: white;
@@ -32,7 +32,7 @@
         left:101.0%;       top: 0.0%;
         width: 36.0%;   height: 7.0%;
         padding-left: 0;
-        color: white;
+        color: yellow;
     }
 
     .side_right_seites {
@@ -43,7 +43,7 @@
         left:101.0%;       top: 7.0%;
         width: 36.0%;   height: 90.0%;
         padding-left: 0;
-        color: white;
+        color: yellow;
     }
 
      </style>
@@ -60,14 +60,13 @@
 
 <div class="seite_zoom">
 
-      <img src="{% static zoom_seite.image_seites %}" alt="{{ zoom_seite.name_seites }}"
-                     />
+      <img src="{% static zoom_seite.image_seites %}" alt="{{ zoom_seite.name_seites }}"/>
 
 </div>  <!-- seite_zoom -->
 
 
 <div class="side_right_tytle">
-     <h5> <a href="{% url 'bookland:seites-list' zoom_seite.id %}"><strong>[X]&nbsp;</strong></a>Назад</h5>
+     <h5> <a href="{% url 'bookland:seites-list' zoom_seite.id %}"><b>[X]&nbsp;</b></a><b>Назад</b></h5>
 </div>  <!-- side_right_tytle -->
 
 <div class="side_right_seites">

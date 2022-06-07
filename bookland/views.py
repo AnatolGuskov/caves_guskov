@@ -80,6 +80,10 @@ def register_art(request, art):
         reg_art = "Туристичні об'єкти"
     reg_name_list = Register.objects.all().filter(reg_art = reg_art)
 
+    art_object = set(())
+    for object in reg_name_list:
+        art_object.add (object.reg_s_name)
+
     seites_menu = Bookseites.objects.all()
     # seites_list = []
 
@@ -89,6 +93,7 @@ def register_art(request, art):
         context = {
             'reg_name_list': reg_name_list,
             'art': art, 'reg_art': reg_art,
+            'art_object': art_object,
 
         }
            )
@@ -98,7 +103,7 @@ def register_art(request, art):
 def register_seites(request, pk, art):
 
     reg_seites = Register.objects.get(pk = pk)
-    reg_name = reg_seites.reg_f_name +", "+ reg_seites.reg_s_name
+    reg_name = reg_seites.reg_f_name
     reg_num =  reg_seites.reg_numbers
     reg_art =  reg_seites.reg_art
 

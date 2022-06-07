@@ -29,8 +29,8 @@
         background: none;
         border: 0px solid white;
         position: absolute;
-        left:101.0%;       top: 0.0%;
-        width: 36.0%;   height: 7.0%;
+        left:101.5%;       top: 0.0%;
+        width: 35.5%;   height: 7.0%;
         padding-left: 0;
         color: yellow;
     }
@@ -40,8 +40,8 @@
         border: 0px solid white;
         overflow: auto;
         position: absolute;
-        left:101.0%;       top: 7.0%;
-        width: 36.0%;   height: 88.0%;
+        left:101.5%;       top: 7.0%;
+        width: 35.5%;   height: 92.0%;
         padding-left: 0;
         color: yellow;
     }
@@ -63,9 +63,9 @@
       {% for seite in seites_list %}
     <table style="width: 98.0%; color: white">
         <tr>
-            <td style="width:80.0%; font-size: 14px" >
+            <td style="width:80.0%; font-size: 14px; color: white" >
                 &nbsp;&nbsp;стор. {{ seite.seites }} &nbsp; <b>{{ seite.name_seites1 }}&nbsp;{{ seite.name_seites }}</b></td>
-            <td align="right" >
+            <td align="right" style="font-size: 14px; color: white">
                 <a href="{% url 'bookland:zoom' seite.id %}"><strong>[X]&nbsp;</strong></a>Збільшити</td>
         </tr>
     </table>

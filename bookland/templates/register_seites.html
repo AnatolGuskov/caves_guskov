@@ -48,8 +48,8 @@
         border: 0px solid white;
         overflow: auto;
         position: absolute;
-        left:101.5%;       top: 7.0%;
-        width: 35.5%;   height: 92.0%;
+        left:101.5%;       top: 19.0%;
+        width: 35.5%;   height: 80.0%;
         padding-left: 0;
         color: yellow;
     }
@@ -66,12 +66,22 @@
 
 {% block content %}
 
+<p> {{reg_seites}} </p>
 
 <div class="seites_list">
     {% if reg_seites %}
 
     {% for seite in reg_seites.reg_seites.all %}
-        <h5>&nbsp;&nbsp; стор. {{ seite.seites }} &nbsp; <b>{{ seite.name_seites1 }}&nbsp;{{ seite.name_seites }}</b></h5>
+     <table style="width: 98.0%; color: white">
+        <tr>
+            <td style="width:80.0%; font-size: 14px; color: white" >
+                &nbsp;&nbsp;стор. {{ seite.seites }} &nbsp; <b>{{ seite.name_seites1 }}&nbsp;{{ seite.name_seites }}</b></td>
+            <td align="right" style="font-size: 14px; color: white">
+                <a href="{% url 'bookland:zoom' seite.id reg_pk %}"> <strong>[X]&nbsp;</strong></a>Збільшити</td>
+        </tr>
+    </table>
+
+<!--        <h5>&nbsp;&nbsp; стор. {{ seite.seites }} &nbsp; <b>{{ seite.name_seites1 }}&nbsp;{{ seite.name_seites }}</b></h5>-->
         <img src="{% static seite.image_seites %}" alt="{{ seite.name_seites }}"
                      style="width:100%;"/>
         <br> <br>
@@ -83,6 +93,7 @@
 </div>  <!-- seites_list -->
 
 <div class="list_tytle">
+
     <h4 style = "color: white">  <b>&nbsp;&nbsp;{{reg_name}}</b> &nbsp;&nbsp;{{ reg_num }}</h4>
 
 </div>  <!-- list_tytle -->

@@ -2,13 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Register</title>
+    <title>Register Art</title>
 
 
     <style>
     table, th, td {
-          border: 0px solid black;
+          border: 1px solid white;
           vertical-align: top;
+          color: white;
         }
 
     .seites_list {
@@ -20,6 +21,7 @@
         width: 100.0%;   height: 100.0%;
         padding-left: 0px;
         overflow: none;
+        line-height: 1.2;
         color: blue;
     }
 
@@ -28,9 +30,19 @@
         border: 0px solid white;
         position: absolute;
         left:2.0%;       top: 0.0%;
-        width: 33.0%;   height: 7.0%;
+        width: 96.0%;   height: 7.0%;
         padding-left: 0;
         color: white;
+    }
+
+    .side_right_tytle {
+        background: none;
+        border: 0px solid white;
+        position: absolute;
+        left:101.5%;       top: 0.0%;
+        width: 35.5%;   height: 7.0%;
+        padding-left: 0;
+        color: yellow;
     }
 
     .side_right_register {
@@ -38,8 +50,8 @@
         border: 0px solid white;
         overflow: auto;
         position: absolute;
-        left:101.5%;       top: 2.0%;
-        width: 35.5%;   height: 97.0%;
+        left:101.5%;       top: 19.0%;
+        width: 35.5%;   height: 80.0%;
         padding-left: 0;
         color: yellow;
     }
@@ -56,19 +68,35 @@
 
 {% block content %}
 
-<img src="{% static 'image/Kule2_center.jpg' %}" alt="Kuleburun_ctnter"
+<img src="{% static 'image/Kule2_center.jpg' %}" alt="Kuleburun_center"
                  style="width:100%;height:100%;"/>
 
 <div class="center_tytle">
-    <h4> <b>{{reg_art}}</b> </h4>
-         {% for item in art_object %}
-            <h5> {{ item }} </h5>
+    <h4> <b>{{art}} - {{num_name}}</b> </h4>
+         {% for item in art_object_num %}
+         {% if item %}
+<table style="width: 35.0%; line-height: 1.2; vertical-align: baseline; color: white" >
+   <tr>
+   <td style="width:15.0%; font-size: 14px" align="left" >
+       <a href="{% url 'bookland:register-object' item.1 %}" >
+       <b style = "font-size: 14px" > [X] </b></a>
+       </td>
+   <td style="width:65.0%"> {{ item.1 }} </td>
+   <td align="right" style = "font-size: 13px">
+        {{ item.2 }} </td>
+   </tr>
+</table>
+         {% endif %}
          {% endfor %}
-
 
 </div>  <!-- center_tytle -->
 
-    {% if reg_name_list %}
+
+
+
+<div class="side_right_tytle">
+        <h5> <b>Перелік найменувань - {{num_name}}</b> </h5>
+</div>  <!-- side_right_tytle -->
 
 <div class="side_right_register">
 
@@ -76,7 +104,7 @@
 <table style="width: 100.0%; line-height: 1.2; vertical-align: baseline;" >
    <tr>
    <td style="width:10.0%; font-size: 14px" align="right" >
-       <a href="{% url 'bookland:register-seites' reg_name.id reg_art %}" >
+       <a href="{% url 'bookland:register-seites' reg_name.id art %}" >
        <b style = "font-size: 14px" > [X] </b></a>
        </td>
    <td style="width:3.0%"> </td>
@@ -89,11 +117,10 @@
 
 </div> <!-- side_right_register -->
 
-    {% else %}
-    <p>There are no register in the library.</p>
-{% endif %}
 
-{% endblock %}
+
+
+{% endblock %}  <!-- content -->
 
 
 </head>

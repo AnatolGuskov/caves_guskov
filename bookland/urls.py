@@ -16,9 +16,10 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('seites/', views.seites, name='seites'),
     path('seites/<pk>', views.seites_list, name='seites-list'),
-    path('zoom/<pk>', views.zoom_seite, name='zoom'),
+    path('zoom/<pk>/<quelle>', views.zoom_seite, name='zoom'),
 
     path('register/<art>', views.register_art, name='register-art'),
+    path('register/object/<obj>', views.register_object, name='register-object'),
     path('register/<pk>/<art>', views.register_seites, name='register-seites'),
 
 ]

@@ -40,8 +40,8 @@
         border: 0px solid white;
         overflow: auto;
         position: absolute;
-        left:101.5%;       top: 7.0%;
-        width: 35.5%;   height: 92.0%;
+        left:101.5%;       top: 19.0%;
+        width: 35.5%;   height: 80.0%;
         padding-left: 0;
         color: yellow;
     }
@@ -66,7 +66,7 @@
             <td style="width:80.0%; font-size: 14px; color: white" >
                 &nbsp;&nbsp;стор. {{ seite.seites }} &nbsp; <b>{{ seite.name_seites1 }}&nbsp;{{ seite.name_seites }}</b></td>
             <td align="right" style="font-size: 14px; color: white">
-                <a href="{% url 'bookland:zoom' seite.id %}"><strong>[X]&nbsp;</strong></a>Збільшити</td>
+                <a href="{% url 'bookland:zoom' seite.id 'seites'%}"><strong>[X]&nbsp;</strong></a>Збільшити</td>
         </tr>
     </table>
 

@@ -35,15 +35,16 @@
         color: yellow;
     }
 
-    .side_right_seites {
+    .side_right_text {
         background: none;
-        border: 0px solid white;
-        overflow: auto;
+        border: 0px solid black;
+        white-space: pre-line;
+        overflow-y: auto; /* Add vertical scrollbar */
         position: absolute;
-        left:101.0%;       top: 7.0%;
-        width: 36.0%;   height: 90.0%;
-        padding-left: 0;
-        color: yellow;
+        left:101.5%;       top:18.0%;
+        width: 37.0%;   height: 80.0%;
+        color: white;
+
     }
 
      </style>
@@ -76,8 +77,11 @@
 
 </div>  <!-- side_right_tytle -->
 
-<div class="side_right_seites">
-</div> <!-- side_right_seites -->
+<p class = "side_right_text" style = "font-size: 11px; line-height: 1.2;">
+
+{{ zoom_seite.content_seite }}
+
+</p> <!-- side_right_text -->
 
 
 

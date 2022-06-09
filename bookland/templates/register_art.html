@@ -29,8 +29,18 @@
         background: none;
         border: 0px solid white;
         position: absolute;
-        left:2.0%;       top: 0.0%;
-        width: 96.0%;   height: 7.0%;
+        left:7.0%;       top: 0.0%;
+        width: 92.0%;   height: 7.0%;
+        padding-left: 0;
+        color: white;
+    }
+
+    .center_list {
+        background: none;
+        border: 0px solid white;
+        position: absolute;
+        left:2.0%;       top: 19.0%;
+        width: 96.0%;   height: 80.0%;
         padding-left: 0;
         color: white;
     }
@@ -73,6 +83,9 @@
 
 <div class="center_tytle">
     <h4> <b>{{art}} - {{num_name}}</b> </h4>
+</div>  <!-- center_tytle  -->
+
+<div class = "center_list">
          {% for item in art_object_num %}
          {% if item %}
 <table style="width: 35.0%; line-height: 1.2; vertical-align: baseline; color: white" >
@@ -81,21 +94,21 @@
        <a href="{% url 'bookland:register-object' item.1 %}" >
        <b style = "font-size: 14px" > [X] </b></a>
        </td>
-   <td style="width:65.0%"> {{ item.1 }} </td>
-   <td align="right" style = "font-size: 13px">
-        {{ item.2 }} </td>
+   <td style="width:65.0%; color: white"> <b>{{ item.1 }}</b> </td>
+   <td align="right" style = "font-size: 13px; color: white">
+       <b> {{ item.2 }} </b></td>
    </tr>
 </table>
          {% endif %}
          {% endfor %}
 
-</div>  <!-- center_tytle -->
+</div>  <!-- center_list -->
 
 
 
 
 <div class="side_right_tytle">
-        <h5> <b>Перелік найменувань - {{num_name}}</b> </h5>
+        <h4 style="font-size: 16px"> <b>Перелік найменувань - {{num_name}}</b> </h4>
 </div>  <!-- side_right_tytle -->
 
 <div class="side_right_register">

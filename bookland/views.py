@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.views import generic
 from django.db.models import Q
 
-from . models import Bookseites, Register
+from . models import Bookseites, Register, Bookseites_eng
 
 
 
@@ -107,7 +107,6 @@ def register_art(request, art):
             'art_object': art_object,
             'num_name': num_name,
             'art_object_num': art_object_num,
-
         }
            )
 # ================== END register_art ===========================

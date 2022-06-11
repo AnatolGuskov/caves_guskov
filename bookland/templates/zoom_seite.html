@@ -71,13 +71,12 @@
     {% if quelle_zoom == "seites" %}
      <h5> <a href="{% url 'bookland:seites-list' zoom_seite.id %}"><b>[X]&nbsp;</b></a><b>Назад</b></h5>
     {% else %}
-
      <h5> <a href="{% url 'bookland:register-seites' quelle_zoom 1 %}"><b>[X]&nbsp;</b></a><b>Назад</b></h5>
     {% endif %}
 
 </div>  <!-- side_right_tytle -->
 
-<p class = "side_right_text" style = "font-size: 11px; line-height: 1.2;">
+<p class = "side_right_text" style = "font-size: 12px; line-height: 1.2;">
 
 {{ zoom_seite.content_seite }}
 

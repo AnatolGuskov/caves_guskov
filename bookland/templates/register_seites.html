@@ -100,19 +100,18 @@
 
 
 <div class="side_right_tytle">
-        <h5> <b>{{reg_art}}</b> </h5>
+        <h5> <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{object_name}} - {{num_name}}</b> </h5>
 </div>  <!-- side_right_tytle -->
 
 <div class="side_right_register">
 
-{% for reg_name in reg_name_list %}
+{% for reg_name in reg_object_list %}
 <table style="width: 100.0%; line-height: 1.2; vertical-align: baseline;" >
    <tr>
    <td style="width:10.0%; font-size: 14px" align="right" >
        <a href="{% url 'bookland:register-seites' reg_name.id reg_art %}" >
-       <b style = "font-size: 14px" > [X] </b></a>
-       </td>
-   <td style="width:3.0%"> </td>
+       <b style = "font-size: 14px" > [X] </b></a> </td>
+   <td style="width:2.0%"> </td>
    <td align="left" style = "font-size: 13px">
        {{reg_name.reg_f_name}} </td>
    </tr>

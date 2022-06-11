@@ -3,18 +3,24 @@ from django.shortcuts import render
 from django.views import generic
 from django.db.models import Q
 
-from . models import Bookseites, Register, Bookseites_eng
+from . models import Bookseites, Register, Bookseites_eng, Text_site
 
 
 
 
 # ================== INDEX  ===========================
 def index(request):
+    tytle = Text_site.objects.get(theme = "index_tytle")
+    text_tytle = tytle.ukr
+    annotation = Text_site.objects.get(theme="index_annotation")
+    text_annotation = annotation.ukr
 
     return render(
         request, 'index.html',
         context = {
             'name': "Anatoly",
+            'text_tytle': text_tytle,
+            'text_annotation': text_annotation,
         }
            )
 # ================== SITES  ===========================
@@ -102,11 +108,14 @@ def register_art(request, art):
     return render(
         request, 'register_art.html',
         context = {
-            'reg_name_list': reg_name_list,
             'art': art,
-            'art_object': art_object,
+            'reg_name_list': reg_name_list,
             'num_name': num_name,
+
+            'art_object': art_object,
             'art_object_num': art_object_num,
+
+
         }
            )
 # ================== END register_art ===========================
@@ -114,14 +123,15 @@ def register_art(request, art):
 # ================== REGISTER OBJECT ===========================
 def register_object(request, obj):
 
-    reg_name_list = Register.objects.all().filter(reg_s_name = obj)
-    num_name = len(reg_name_list)
-    object_name = obj
+    object_name = obj  # обраний тип об'єкту
+    reg_name_list = Register.objects.all().filter(reg_s_name = obj)  # список об'ектів обраного типу
+    num_name = len(reg_name_list)   # кількість об'ектів обраного типу
 
-    art = reg_name_list [0].reg_art
-    reg_name_list_all = Register.objects.all().filter(reg_art=art)
-    num_name_art = len(reg_name_list_all)
+    art = reg_name_list [0].reg_art    # вид показчика (географія, міста, туроб'єкти)
+    reg_name_list_all = Register.objects.all().filter(reg_art=art)   # список найменувань виду показчика
+    num_name_art = len(reg_name_list_all)  # кількість найменувань виду показчика
 
+# формування списку типів об'єктів показчика з вичисленням кількості об'єктів у списку
     art_object = set(())
     for object in reg_name_list_all:
         art_object.add (object.reg_s_name)
@@ -138,12 +148,13 @@ def register_object(request, obj):
     return render(
         request, 'register_object.html',
         context = {
+            'object_name': object_name,
             'reg_name_list': reg_name_list,
-            'num_name_art': num_name_art, 'num_name': num_name,
+            'num_name': num_name,
+            'art': art,
+            'num_name_art': num_name_art,
             'art_object': art_object,
             'art_object_num': art_object_num,
-            'obj': obj, 'art': art,
-            'object_name': object_name,
 
         }
            )
@@ -154,18 +165,24 @@ def register_object(request, obj):
 # ================== REGISTER SEITES ===========================
 def register_seites(request, pk, art):
 
-    reg_seites = Register.objects.get(pk = pk)
-    reg_name = reg_seites.reg_f_name
-    reg_num =  reg_seites.reg_numbers
-    reg_art =  reg_seites.reg_art
-    reg_pk = pk
+    reg_seites = Register.objects.get(pk = pk) # сторінки з вказаним об'єктом
+    reg_name = reg_seites.reg_f_name           # найменування об'єкту
+    reg_num =  reg_seites.reg_numbers          # нумера сторінок з вказаним об'єктом
+    reg_art =  reg_seites.reg_art              # вид показчика об'єкта
+    reg_pk = pk                                # код об'єкта
+    reg_object = reg_seites.reg_s_name         # тип об'єкта
 
-    reg_name_list = Register.objects.all().filter(reg_art=reg_art)
+    reg_object_list = Register.objects.all().filter(reg_s_name = reg_object) # список об'єктів заданого типу
+    num_name = len(reg_object_list)
+    reg_name_list = Register.objects.all().filter(reg_art=reg_art) # список всіх об'єктів виду показчика
 
     return render(
         request, 'register_seites.html',
         context = {
             'reg_seites': reg_seites,
+            'object_name': reg_object,
+            'reg_object_list': reg_object_list,
+            'num_name': num_name,
             'reg_name_list': reg_name_list,
             'reg_art': reg_art, 'reg_name': reg_name,
             'reg_num': reg_num,

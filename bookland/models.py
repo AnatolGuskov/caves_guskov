@@ -65,6 +65,18 @@ class Register_eng(models.Model):
     def __str__(self):
         return str(self.reg_f_name)
 
+# ========================= TEXT =======
+class Text_site(models.Model):
+
+    theme = models.CharField(max_length=100, null=True, blank=True)
+    ukr = models.TextField(null = True, blank = True)
+    eng = models.TextField(null=True, blank=True)
+    ita = models.TextField(null=True, blank=True)
+
+    def __str__(self):
+        return str(self.theme)
+
+
 
 
 

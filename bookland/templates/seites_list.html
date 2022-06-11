@@ -61,12 +61,13 @@
 <div class="seites_list">
 
       {% for seite in seites_list %}
-    <table style="width: 98.0%; color: white">
+    <table style="width: 100.0%; color: white">
         <tr>
-            <td style="width:80.0%; font-size: 14px; color: white" >
+            <td style="width:70.0%; font-size: 14px; color: white" >
                 &nbsp;&nbsp;стор. {{ seite.seites }} &nbsp; <b>{{ seite.name_seites1 }}&nbsp;{{ seite.name_seites }}</b></td>
             <td align="right" style="font-size: 14px; color: white">
-                <a href="{% url 'bookland:zoom' seite.id 'seites'%}"><strong>[X]&nbsp;</strong></a>Збільшити</td>
+                <a href="{% url 'bookland:zoom' seite.id 'seites'%}">
+                   <strong>[X]&nbsp;</strong></a>Збільшити/Переклад</td>
         </tr>
     </table>
 

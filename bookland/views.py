@@ -15,22 +15,43 @@ def index(request):
     annotation = Text_site.objects.get(theme="index_annotation")
     text_annotation = annotation.ukr
 
+
     return render(
         request, 'index.html',
         context = {
-            'name': "Anatoly",
+            'template': "base_generic.html",
+            'language': "UKR",
+            'eng': "англійська",
+            'ukr': "українська",
+
             'text_tytle': text_tytle,
             'text_annotation': text_annotation,
         }
            )
 # ================== SITES  ===========================
-def seites(request):
-    seites_menu = Bookseites.objects.all()
+def seites(request, topic):
+    if topic == "1":
+        seites_menu = Bookseites.objects.all()
+    else:
+        seites_menu = Bookseites.objects.all().filter(name_seites1 = topic)
+
+    section_list = Bookseites.objects.all().filter(name_step = "1")
+
 
     return render(
         request, 'seites.html',
         context = {
-              'seites_menu': seites_menu,
+            'template': "base_generic.html",
+            'url_topic': "bookland:seites",
+            'url_seiteslist': "bookland:seites-list",
+            'language': "UKR",
+            'eng': "англійська",
+            'ukr': "українська",
+
+            'seittopic': "Перегляд сторінок Книги",
+            'bookcontents': "Зміст Книги",
+            'seites_menu': seites_menu,
+            'section_list': section_list,
                   }
            )
 
@@ -46,16 +67,24 @@ def seites_list(request, pk):
         text = "ОСТАННЯ СТОРІНКА виборки"
     else:
         text = "ДАЛІ - наступні сторінки ... "
-    if max_seit == 72:
-        text = "ОСТАННЯ СТОРІНКА книги"
+    # if seites_list == 72:
+    #     text = "ОСТАННЯ СТОРІНКА книги"
 
     return render(
         request, 'seites_list.html',
         context = {
+            'template': "base_generic.html",
+            'url_seiteslist': "bookland:seites-list_eng",
+            'url_zoom': "bookland:zoom",
+            'language': "UKR",
+            'eng': "англійська", 'ukr': "українська",
+
             'seites_list': seites_list,
             'seites_menu': seites_menu,
             'seit_max': seit_max,
-            'text': text,
+            'text': text, 'site': "стор.", 'zoom': "Збільшити/Переклад",
+            'bookcontents': "Зміст Книги",
+
         }
            )
 # ================== END seites_list  ===========================
@@ -69,8 +98,16 @@ def zoom_seite(request, pk, quelle):
     return render(
         request, 'zoom_seite.html',
         context = {
-            'zoom_seite': zoom_seite,
-            'quelle_zoom': quelle_zoom
+            'template': "base_generic.html",
+            'url_zoom': "bookland:zoom",
+            'url_seiteslist': "bookland:seites-list",
+            'url_register': "bookland:register-seites",
+            'language': "UKR",
+            'eng': "англійська", 'ukr': "українська",
+
+            'zoom_seite': zoom_seite, 'seite_id': pk,
+            'quelle_zoom': quelle_zoom,
+            'back': "Назад"
 
         }
            )
@@ -81,17 +118,18 @@ def zoom_seite(request, pk, quelle):
 def register_art(request, art):
 
     if art == "1":
-        art = "Географічні назви"
+        art_name = "Географічні назви"
     if art == "2":
-        art = "Населені пункти"
+        art_name = "Населені пункти"
     if art == "3":
-        art = "Туристичні об'єкти"
-    reg_name_list = Register.objects.all().filter(reg_art = art)
+        art_name = "Туристичні об'єкти"
+    reg_name_list = Register.objects.all().filter(reg_art = art_name)
     num_name = len(reg_name_list)
+ 
 
     art_object = set(())
     for object in reg_name_list:
-        art_object.add (object.reg_s_name)
+        art_object.add(object.reg_s_name)
 
     art_object_num = [[],]
     for item in art_object:
@@ -108,7 +146,13 @@ def register_art(request, art):
     return render(
         request, 'register_art.html',
         context = {
-            'art': art,
+            'template': "base_generic.html",
+            'url_object': "bookland:register-object",
+            'url_register': "bookland:register-seites",
+            'language': "UKR",
+            'eng': "англійська", 'ukr': "українська",
+
+            'art': art, 'art_name': art_name,
             'reg_name_list': reg_name_list,
             'num_name': num_name,
 
@@ -121,7 +165,7 @@ def register_art(request, art):
 # ================== END register_art ===========================
 
 # ================== REGISTER OBJECT ===========================
-def register_object(request, obj):
+def register_object(request, obj, language):
 
     object_name = obj  # обраний тип об'єкту
     reg_name_list = Register.objects.all().filter(reg_s_name = obj)  # список об'ектів обраного типу
@@ -148,6 +192,12 @@ def register_object(request, obj):
     return render(
         request, 'register_object.html',
         context = {
+            'template': "base_generic.html",
+            'url_object': "bookland:register-object",
+            'url_register': "bookland:register-seites",
+            'language': "UKR",
+            'eng': "англійська", 'ukr': "українська",
+
             'object_name': object_name,
             'reg_name_list': reg_name_list,
             'num_name': num_name,

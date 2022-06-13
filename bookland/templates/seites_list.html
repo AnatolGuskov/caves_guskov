@@ -12,6 +12,26 @@
           color: white;
         }
 
+    .bottom-left {
+        position: absolute;
+        top: 50.0%;
+        left: -17.0%;
+        width: 79.0%;
+        color: white
+    }
+
+<!--    a.button {-->
+<!--          display: inline-block;-->
+<!--          background: RoyalBlue;-->
+<!--          color: white;-->
+<!--          padding: 1px;-->
+<!--          border-radius: 4px;-->
+<!--          text-decoration: none;-->
+<!--          font-family: Tahoma;-->
+<!--          font-size: 11px;-->
+<!--          line-height: 1.4;-->
+<!--          font-weight: 80;-->
+<!--    }-->
 
     .seites_list {
         background: none;
@@ -52,22 +72,29 @@
 </head>
 
 <body>
-    {% extends "base_generic.html" %}
+    {% extends template %}
     {% load static %}
 
 {% block content %}
+
+    <div class="bottom-left">
+        <p style = "color: white"><b> {{language}} </b></p>
+        <a class="button" href="{% url 'bookland:seites-list' 1 %}">&nbsp;{{ukr}}&nbsp;</a> <br>
+        <a class="button" href="{% url 'bookland:seites-list_eng' 1 %}">&nbsp;{{eng}}&nbsp;&nbsp;&nbsp;</a>
+    </div> <!-- bottom-left -->
+
 
 {% if seites_list %}
 <div class="seites_list">
 
       {% for seite in seites_list %}
-    <table style="width: 100.0%; color: white">
+    <table style="width: 99.0%; color: white">
         <tr>
             <td style="width:70.0%; font-size: 14px; color: white" >
-                &nbsp;&nbsp;стор. {{ seite.seites }} &nbsp; <b>{{ seite.name_seites1 }}&nbsp;{{ seite.name_seites }}</b></td>
+                &nbsp;&nbsp;{{site}} {{ seite.seites }} &nbsp; <b>{{ seite.name_seites1 }}&nbsp;{{ seite.name_seites }}</b></td>
             <td align="right" style="font-size: 14px; color: white">
-                <a href="{% url 'bookland:zoom' seite.id 'seites'%}">
-                   <strong>[X]&nbsp;</strong></a>Збільшити/Переклад</td>
+                <a href="{% url url_zoom seite.id 'seites'%}">
+                   <strong>[X]&nbsp;</strong></a>{{zoom}}</td>
         </tr>
     </table>
 
@@ -84,7 +111,7 @@
 </div>  <!-- seites_list -->
 
 <div class="side_right_tytle">
-         <h4> <b>Зміст Книги</b> </h4>
+         <h4> <b>{{bookcontents}}</b> </h4>
 </div>  <!-- side_right_tytle -->
 
 <div class="side_right_seites">
@@ -97,7 +124,7 @@
 <table style="width: 100.0%;" >
    <tr vertical-align = middle>
    <td style="width:22.0%; font-size: 14px" align="right" >
-       <a href="{% url 'bookland:seites-list' seite.id %}" >
+       <a href="{% url url_seiteslist seite.id %}" >
        <b style = "font-size: 14px" > {{ seite.seites }} </b></a>
        </td>
    <td style="width:3.0%"> </td>

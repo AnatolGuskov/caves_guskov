@@ -87,34 +87,34 @@
                  style="width:100%;height:100%;"/>
 
       <div class="menu">
-           <h5><b>&nbsp;&nbsp;Головне меню</b></h5>
+           <h5><b>&nbsp;&nbsp;Main menu</b></h5>
 
 <table style="width: 101.0%; line-height: 1.2; vertical-align: baseline;" >
     <tr>
         <td style="width:17.0%; font-size: 14px" >
-            <a href="{% url 'bookland:index'  %}"><strong>[X]</strong></a> </td>
+            <a href="{% url 'bookland:index_eng'  %}"><strong>[X]</strong></a> </td>
         <td style="width:2.0%">&nbsp;</td>
-        <td align="left" style = "font-size: 13px"><b> Домашня </b></td>
+        <td align="left" style = "font-size: 13px"><b> Homesite </b></td>
    </tr>
     <tr>
-        <td> <a href="{% url 'bookland:seites' 1 %}"><strong>[X]</strong></a> </td>
+        <td> <a href="{% url 'bookland:seites_eng' 1 %}"><strong>[X]</strong></a> </td>
         <td> </td>
-        <td style = "font-size: 13px"><b> Сторінки Книги </b></td>
+        <td style = "font-size: 13px"><b> Booksites </b></td>
    </tr>
    <tr>
-        <td> <a href="{% url 'bookland:register-art' 1 %}"><strong>[X]</strong></a> </td>
+        <td> <a href="{% url 'bookland:register-art_eng' 1 %}"><strong>[X]</strong></a> </td>
         <td> </td>
-        <td style = "font-size: 13px"><b> Географічні назви </b></td>
+        <td style = "font-size: 13px"><b> Geographic </b></td>
    </tr>
    <tr>
-        <td> <a href="{% url 'bookland:register-art' 2 %}"><strong>[X]</strong></a> </td>
+        <td> <a href="{% url 'bookland:register-art_eng' 2 %}"><strong>[X]</strong></a> </td>
         <td> </td>
-        <td style = "font-size: 13px"><b> Населені пункти </b></td>
+        <td style = "font-size: 13px"><b> Settlement </b></td>
    </tr>
    <tr>
-        <td> <a href="{% url 'bookland:register-art' 3 %}"><strong>[X]</strong></a> </td>
+        <td> <a href="{% url 'bookland:register-art_eng' 3 %}"><strong>[X]</strong></a> </td>
         <td> </td>
-        <td style = "font-size: 13px"><b> Туристичні об'єкти </b></td>
+        <td style = "font-size: 13px"><b> Tourist Objects </b></td>
    </tr>
 </table>
 
@@ -125,9 +125,9 @@
       <div class="copy_right">
 
           <p style="line-height: 50%; font-size: 11px;">
-              <b> &#169 Анатолій Гуськов </b> </p>
+              <b> &#169 Anatoliy Guskov </b> </p>
           <p style="line-height: 50%; font-size: 10px;">
-              &nbsp;&nbsp;&nbsp;&nbsp;Версія: Червень 2022  </p>
+              &nbsp;&nbsp;&nbsp;&nbsp;Version: Juni 2022  </p>
           <p style="line-height: 50%; font-size: 10px;">
               &nbsp;&nbsp;&nbsp;&nbsp;dkgb@i.ua </p>
           <p style="line-height: 50%; font-size: 10px;">
@@ -148,9 +148,6 @@
 
 <div class="content">
       {% block content %}
-
-<img src="{% static 'image/Kule2_center.jpg' %}" alt="Kuleburun_center"
-                 style="width:100%;height:100%;"/>
 
       {% endblock %}
 </div> <!-- content -->

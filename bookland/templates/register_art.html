@@ -73,10 +73,15 @@
 </head>
 
 <body>
-    {% extends "base_generic.html" %}
+    {% extends template %}
     {% load static %}
 
 {% block content %}
+     <div class="bottom-left">
+        <p style = "color: white"><b> {{language}} </b></p>
+        <a class="button" href="{% url 'bookland:register-art' art %}">&nbsp;{{ukr}}&nbsp;</a> <br>
+        <a class="button" href="{% url 'bookland:register-art_eng' art %}">&nbsp;{{eng}}&nbsp;&nbsp;&nbsp;</a>
+     </div> <!-- bottom-left -->
 
 <img src="{% static 'image/Kule2_center.jpg' %}" alt="Kuleburun_center"
                  style="width:100%;height:100%;"/>
@@ -85,7 +90,7 @@
 <table style="width:38.0%; vertical-align: baseline;" >
    <tr>
    <td style="width:15.0%;"> <hp></hp> </td>
-   <td style="width:75.0%; color: white; font-size: 17px;"> <p><b>{{ art }} </b></p> </td>
+   <td style="width:75.0%; color: white; font-size: 17px;"> <p><b>{{ art_name }} </b></p> </td>
    <td align="right" style = "color: white; font-size: 16px;"> <p><b>{{ num_name }}</b></p></td>
    </tr>
 </table>
@@ -97,7 +102,7 @@
 <table style="width: 38.0%; line-height: 1.2; vertical-align: baseline; color: white" >
    <tr>
    <td style="width:15.0%" align="left" >
-       <a href="{% url 'bookland:register-object' item.1 %}" >
+       <a href="{% url url_object item.1 language %}" >
        <b style = "font-size: 14px" > [X] </b></a>
        </td>
    <td style="width:75.0%; color: white; font-size: 14px"> <b>{{ item.1 }}</b> </td>
@@ -114,7 +119,7 @@
 
 
 <div class="side_right_tytle">
-        <h4 style="font-size: 16px"> <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Усі найменування - {{num_name}}</b> </h4>
+        <h4 style="font-size: 16px"> <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{art_name}} - {{num_name}}</b> </h4>
 </div>  <!-- side_right_tytle -->
 
 <div class="side_right_register">

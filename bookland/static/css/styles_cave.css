@@ -1,0 +1,22 @@
+
+
+    .bottom-left {
+        position: absolute;
+        top: 50.0%;
+        left: -17.0%;
+        width: 79.0%;
+        color: white
+    }
+
+    a.button {
+          display: inline-block;
+          background: RoyalBlue;
+          color: white;
+          padding: 1px;
+          border-radius: 4px;
+          text-decoration: none;
+          font-family: Tahoma;
+          font-size: 11px;
+          line-height: 1.4;
+          font-weight: 80;
+    }

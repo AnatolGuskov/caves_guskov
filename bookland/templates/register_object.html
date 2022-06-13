@@ -73,10 +73,16 @@
 </head>
 
 <body>
-    {% extends "base_generic.html" %}
+    {% extends template %}
     {% load static %}
 
 {% block content %}
+
+     <div class="bottom-left">
+        <p style = "color: white"><b> {{language}} </b></p>
+        <a class="button" href="{% url 'bookland:register-object' object_name %}">&nbsp;{{ukr}}&nbsp;</a> <br>
+        <a class="button" href="{% url 'bookland:register-object_eng' object_name %}">&nbsp;{{eng}}&nbsp;&nbsp;&nbsp;</a>
+     </div> <!-- bottom-left -->
 
 <img src="{% static 'image/Kule2_center.jpg' %}" alt="Kuleburun_center"
                  style="width:100%;height:100%;"/>
@@ -97,7 +103,7 @@
 <table style="width: 38.0%; line-height: 1.2; vertical-align: baseline; color: white" >
    <tr>
    <td style="width:15.0%; font-size: 14px" align="left" >
-       <a href="{% url 'bookland:register-object' item.1 %}" >
+       <a href="{% url url_object item.1 %}" >
        <b style = "font-size: 14px" > [X] </b></a>
        </td>
    <td style="width:75.0%; color: white"> <b>{{ item.1 }}</b> </td>

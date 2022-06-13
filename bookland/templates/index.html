@@ -1,34 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+
+
     <style>
-        table, th, td {
-          border:0px solid black;
+    table, th, td {
+          border: 0px solid white;
+          vertical-align: top;
+          color: yellow;
         }
 
-    .seites_list {
-        background: rgb(210, 250, 240);
+     .content {
+        background: rgb(175, 175, 200);
         border: 0px solid black;
         position: absolute;
-        left:0.0%;       top:0px;
-        width: 100.0%;   height: 100.0%;
-        padding-left: 10;
-        overflow: none;
-        }
-
-    .side_right_text {
-        background: none;
-        border: 0px solid black;
-        white-space: pre-line;
-        overflow-y: auto; /* Add vertical scrollbar */
-        position: absolute;
-        left:101.5%;       top:18.0%;
-        width: 37.0%;   height: 80.0%;
-        color: white;
-
+        left:13.15%;       top:0px;
+        width: 62.65%;   height: 99.5%;
+        padding-left: 20;
     }
 
-    .annotation {
+    .tytle {
         background: none;
         border: 0px solid black;
         position: absolute;
@@ -40,39 +32,55 @@
         line-height: 1.1;
     }
 
+    .side_right_text {
+        background: none;
+        border: 0px solid black;
+        white-space: pre-line;
+        overflow-y: auto; /* Add vertical scrollbar */
+        position: absolute;
+        left: 101.5%;       top:18.0%;
+        width: 37.0%;   height: 80.0%;
+        color: white;
+    }
 
 
-        </style>
+    </style>
+
     <meta charset="UTF-8">
     <title>Land of the Caves Cities</title>
+
+
 </head>
 <body>
 
-
-{% extends "base_generic.html" %}
+{% extends template %}
 {% load static %}
 
-{% block content %}
+ {% block content %}
 
-<div class = "seites_list">
+    <div class="bottom-left">
+        <p style = "color: white"><b> {{ language }} </b></p>
+        <a class="button" href="{% url 'bookland:index' %}">
+            &nbsp;{{ukr}}&nbsp;</a> <br>
+        <a class="button" href="{% url 'bookland:index_eng' %}">
+            &nbsp;{{eng}}&nbsp;&nbsp;&nbsp;</a>
+    </div> <!-- bottom-left -->
+
 
     <img src="{% static 'image/tytle.jpg' %}" alt="Tytle"
          style="width:100%; height:100%;"/>
 
-<pre class = "annotation"><b>
-    {{ text_tytle }}
-
-</b></pre>
-
-
-</div>  <!-- seites_list -->
+    <pre class = "tytle"><b>
+    {{ text_tytle }} </b>
+    </pre>
 
 <p class = "side_right_text" style = "font-size: 12px; line-height: 1.2;">
-
     {{ text_annotation }}
-
 </p>
 
-{% endblock %}
+    {% endblock %}
+
+
+
 
 

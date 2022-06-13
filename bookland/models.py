@@ -1,5 +1,16 @@
 from django.db import models
 
+# ========================= OBJECT =======
+class Object_typ(models.Model):
+    class Meta:
+        ordering = ["ukr", ]
+
+    ukr = models.CharField(max_length=50, null=True, blank=True)
+    eng = models.CharField(max_length=50, null=True, blank=True)
+    ita = models.CharField(max_length=50, null=True, blank=True)
+
+    def __str__(self):
+        return str(self.ukr + ' ' + self.eng)
 
 # ========================= BOOKSEITES =======
 class Bookseites(models.Model):
@@ -25,6 +36,7 @@ class Register(models.Model):
     reg_art = models.CharField(max_length=30,)
     reg_f_name = models.CharField(max_length=100, null = True, blank = True)
     reg_s_name = models.CharField(max_length=100, null=True, blank=True)
+    object_typ = models.ManyToManyField(Object_typ, )
     reg_numbers = models.CharField(max_length=100, null=True, blank=True)
     reg_seites = models.ManyToManyField(Bookseites,)
 
@@ -59,6 +71,7 @@ class Register_eng(models.Model):
     reg_art = models.CharField(max_length=30, )
     reg_f_name = models.CharField(max_length=100, null=True, blank=True)
     reg_s_name = models.CharField(max_length=100, null=True, blank=True)
+    object_typ = models.ManyToManyField(Object_typ, )
     reg_numbers = models.CharField(max_length=100, null=True, blank=True)
     reg_seites = models.ManyToManyField(Bookseites, )
 
@@ -75,6 +88,8 @@ class Text_site(models.Model):
 
     def __str__(self):
         return str(self.theme)
+
+
 
 
 

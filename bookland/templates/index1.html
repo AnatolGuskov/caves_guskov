@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        table, th, td {
+          border:0px solid black;
+        }
+
+    .menu {
+        background: none;
+        border: 0px solid black;
+        position: absolute;
+        left:-20.0%;       top:0.0%;
+        width: 20%;   height:;
+        padding-left: 0;
+        list-style: none;
+        color: yellow;
+    }
+
+    .bottom-left {
+        position: absolute;
+        top: 50.0%;
+        left: -18.0%;
+        width: 15.0%;
+        color: wnite
+    }
+
+    a.button {
+          display: inline-block;
+          background: RoyalBlue;
+          color: white;
+          padding: 1px;
+          border-radius: 4px;
+          text-decoration: none;
+          font-family: Tahoma;
+          font-size: 11px;
+          line-height: 1.4;
+          font-weight: 80;
+    }
+
+    .seites_list {
+        background: rgb(210, 250, 240);
+        border: 0px solid black;
+        position: absolute;
+        left:0.0%;       top:0px;
+        width: 100.0%;   height: 100.0%;
+        padding-left: 10;
+        overflow: none;
+        }
+
+    .side_right_text {
+        background: none;
+        border: 0px solid black;
+        white-space: pre-line;
+        overflow-y: auto; /* Add vertical scrollbar */
+        position: absolute;
+        left:101.5%;       top:18.0%;
+        width: 37.0%;   height: 80.0%;
+        color: white;
+
+    }
+
+    .annotation {
+        background: none;
+        border: 0px solid black;
+        position: absolute;
+        left:0.0%;       top:-2.0%;
+        width: 90.0%;   height: 88.0%;
+        padding-left: 20;
+        overflow: none;
+        color: yellow;
+        line-height: 1.1;
+    }
+
+
+
+        </style>
+    <meta charset="UTF-8">
+    <title>Land of the Caves Cities</title>
+</head>
+<body>
+
+
+{% extends "base_generic.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="menu">
+           <h5><b>{{ menu }}</b></h5>
+
+<table style="width: 101.0%; line-height: 1.2; vertical-align: baseline;" >
+    <tr>
+        <td style="width:17.0%; font-size: 14px" >
+            <a href="{% url 'bookland:index'  %}"><strong>[X]</strong></a> </td>
+        <td style="width:2.0%">&nbsp;</td>
+        <td align="left" style = "font-size: 13px"><b> {{ home }} </b></td>
+   </tr>
+    <tr>
+        <td> <a href="{% url 'bookland:seites' %}"><strong>[X]</strong></a> </td>
+        <td> </td>
+        <td><b> {{ book }} </b></td>
+   </tr>
+   <tr>
+        <td> <a href="{% url 'bookland:register-art' 1 %}"><strong>[X]</strong></a> </td>
+        <td> </td>
+        <td><b> {{ geographic }} </b></td>
+   </tr>
+   <tr>
+        <td> <a href="{% url 'bookland:register-art' 2 %}"><strong>[X]</strong></a> </td>
+        <td> </td>
+        <td><b> {{ settlement }} </b></td>
+   </tr>
+   <tr>
+        <td> <a href="{% url 'bookland:register-art' 3 %}"><strong>[X]</strong></a> </td>
+        <td> </td>
+        <td><b> {{ tourist }} </b></td>
+   </tr>
+
+</table>
+
+
+    </div>  <!-- menu -->
+
+
+<div class="bottom-left">
+        <p style = "color: white"><b> {{ language }} </b></p>
+        <a class="button" href="{% url 'bookland:index' %}">
+            &nbsp;Українська&nbsp;</a> <br>
+        <a class="button" href="{% url 'bookland:index_eng' %}">
+            &nbsp;Англійська&nbsp;&nbsp;&nbsp;</a>
+    </div> <!-- bottom-left -->
+
+<div class = "seites_list">
+
+    <img src="{% static 'image/tytle.jpg' %}" alt="Tytle"
+         style="width:100%; height:100%;"/>
+
+<pre class = "annotation"><b>
+    {{ text_tytle }}
+</b></pre>
+
+
+<p class = "side_right_text" style = "font-size: 12px; line-height: 1.2;">
+    {{ text_annotation }}
+</p>
+
+</div>  <!-- seites_list -->
+
+{% endblock %}
+
+

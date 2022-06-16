@@ -61,28 +61,43 @@
 </head>
 
 <body>
-    {% extends "base_generic.html" %}
+    {% extends template %}
     {% load static %}
 
 {% block content %}
 
+<div class="bottom-left">
+    <p style = "color: white"><b> {{language}} </b></p>
+    <a class="button" href="{% url 'bookland:register-seites' reg_pk language %}">&nbsp;{{ukr}}&nbsp;</a> <br>
+    <a class="button" href="{% url 'bookland:register-seites_eng' reg_pk language %}">&nbsp;{{eng}}&nbsp;&nbsp;&nbsp;</a>
+</div> <!-- bottom-left -->
+
+
 <p> {{reg_seites}} </p>
+
+<div class="list_tytle">
+
+
+    <h4 style = "color: white">  <b>&nbsp;&nbsp;{{reg_name}}</b> &nbsp;&nbsp;{{ reg_numbers }}</h4>
+
+</div>  <!-- list_tytle -->
+
 
 <div class="seites_list">
     {% if reg_seites %}
 
-    {% for seite in reg_seites.reg_seites.all %}
+    {% for seite in seites_list %}
      <table style="width: 98.0%; color: white">
         <tr>
-            <td style="width:80.0%; font-size: 14px; color: white" >
-                &nbsp;&nbsp;стор. {{ seite.seites }} &nbsp; <b>{{ seite.name_seites1 }}&nbsp;{{ seite.name_seites }}</b></td>
+            <td style="width:70.0%; font-size: 14px; color: white" >
+                &nbsp;&nbsp;{{site}} {{ seite.3 }} &nbsp; <b>{{ seite.1 }}&nbsp;{{ seite.2 }}</b></td>
             <td align="right" style="font-size: 14px; color: white">
-                <a href="{% url 'bookland:zoom' seite.id reg_pk %}"> <strong>[X]&nbsp;</strong></a>Збільшити</td>
+                <a href="{% url url_zoom seite.4 reg_pk %}"> <strong>[X]&nbsp;</strong></a>{{zoom}}</td>
         </tr>
     </table>
 
 <!--        <h5>&nbsp;&nbsp; стор. {{ seite.seites }} &nbsp; <b>{{ seite.name_seites1 }}&nbsp;{{ seite.name_seites }}</b></h5>-->
-        <img src="{% static seite.image_seites %}" alt="{{ seite.name_seites }}"
+        <img src="{% static seite.5 %}" alt="{{ seite.5 }}"
                      style="width:100%;"/>
         <br> <br>
     {% endfor %}
@@ -91,12 +106,6 @@
     <p>There are no list of seites</p>
     {% endif %}
 </div>  <!-- seites_list -->
-
-<div class="list_tytle">
-
-    <h4 style = "color: white">  <b>&nbsp;&nbsp;{{reg_name}}</b> &nbsp;&nbsp;{{ reg_num }}</h4>
-
-</div>  <!-- list_tytle -->
 
 
 <div class="side_right_tytle">
@@ -109,7 +118,7 @@
 <table style="width: 100.0%; line-height: 1.2; vertical-align: baseline;" >
    <tr>
    <td style="width:10.0%; font-size: 14px" align="right" >
-       <a href="{% url 'bookland:register-seites' reg_name.id reg_art %}" >
+       <a href="{% url 'bookland:register-seites' reg_name.id language %}" >
        <b style = "font-size: 14px" > [X] </b></a> </td>
    <td style="width:2.0%"> </td>
    <td align="left" style = "font-size: 13px">

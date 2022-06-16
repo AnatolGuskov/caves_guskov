@@ -10,18 +10,23 @@ class Object_typ(models.Model):
     ita = models.CharField(max_length=50, null=True, blank=True)
 
     def __str__(self):
-        return str(self.ukr + ' ' + self.eng)
+        return str(self.ukr + '    ' + self.eng)
 
 # ========================= BOOKSEITES =======
 class Bookseites(models.Model):
     class Meta:
         ordering = ["image_seites"]
     seites = models.CharField(max_length=10,)
+    image_seites = models.CharField(max_length=30, null=True, blank=True)
+    name_step = models.CharField(max_length=1, null=True, blank=True)
+
     name_seites1 = models.CharField(max_length=100, null = True, blank = True)
     name_seites = models.CharField(max_length=100, null = True, blank = True)
-    name_step = models.CharField(max_length=1, null = True, blank = True)
-    image_seites = models.CharField(max_length=30, null = True, blank = True)
     content_seite = models.TextField(null = True, blank = True)
+
+    name_eng1 = models.CharField(max_length=100, null=True, blank=True)
+    name_eng = models.CharField(max_length=100, null=True, blank=True)
+    content_eng = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return str(self.seites + ' ' + self.name_seites)
@@ -47,21 +52,21 @@ class Register(models.Model):
     #     return reverse('poems:genre-detail', args=[str(self.id)])
 
 # ========================= BOOKSEITES =======
-class Bookseites_eng(models.Model):
-    class Meta:
-        ordering = ["image_seites"]
-    seites = models.CharField(max_length=10,)
-    name_seites1 = models.CharField(max_length=100, null = True, blank = True)
-    name_seites = models.CharField(max_length=100, null = True, blank = True)
-    name_step = models.CharField(max_length=1, null = True, blank = True)
-    image_seites = models.CharField(max_length=30, null = True, blank = True)
-    content_seite = models.TextField(null = True, blank = True)
-
-    def __str__(self):
-        return str(self.seites + ' ' + self.name_seites)
-
-    # def get_absolute_url(self):
-    #     return reverse('poems:genre-detail', args=[str(self.id)])
+# class Bookseites_eng(models.Model):
+#     class Meta:
+#         ordering = ["image_seites"]
+#     seites = models.CharField(max_length=10,)
+#     name_seites1 = models.CharField(max_length=100, null = True, blank = True)
+#     name_seites = models.CharField(max_length=100, null = True, blank = True)
+#     name_step = models.CharField(max_length=1, null = True, blank = True)
+#     image_seites = models.CharField(max_length=30, null = True, blank = True)
+#     content_seite = models.TextField(null = True, blank = True)
+#
+#     def __str__(self):
+#         return str(self.seites + ' ' + self.name_seites)
+#
+#     # def get_absolute_url(self):
+#     #     return reverse('poems:genre-detail', args=[str(self.id)])
 
 # ========================= REGISTER =======
 class Register_eng(models.Model):
@@ -74,6 +79,7 @@ class Register_eng(models.Model):
     object_typ = models.ManyToManyField(Object_typ, )
     reg_numbers = models.CharField(max_length=100, null=True, blank=True)
     reg_seites = models.ManyToManyField(Bookseites, )
+
 
     def __str__(self):
         return str(self.reg_f_name)

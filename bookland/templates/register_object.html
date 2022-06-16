@@ -66,6 +66,14 @@
         color: yellow;
     }
 
+    .illustration {
+        border: 0px solid black;
+        position: absolute;
+        left:2.0%;       top:95.0%;
+        color: yellow;
+        font-size: 12px;
+    }
+
 
      </style>
 
@@ -91,7 +99,7 @@
 <table style="width: 38.0%; vertical-align: baseline;" >
    <tr>
    <td style="width:15.0%;"> <hp></hp> </td>
-   <td style="width:75.0%; color: white; font-size: 17px;"> <p><b>{{ art }} </b></p> </td>
+   <td style="width:77.0%; color: white; font-size: 17px;"> <p><b>{{ art }} </b></p> </td>
    <td align="right" style = "color: white; font-size: 16px;"> <p><b>{{ num_name_art }}</b></p></td>
    </tr>
 </table>
@@ -103,18 +111,27 @@
 <table style="width: 38.0%; line-height: 1.2; vertical-align: baseline; color: white" >
    <tr>
    <td style="width:15.0%; font-size: 14px" align="left" >
-       <a href="{% url url_object item.1 %}" >
-       <b style = "font-size: 14px" > [X] </b></a>
-       </td>
+       <a href="{% url url_object item.1 %}" ><b style = "font-size: 14px" > [X] </b></a> </td>
+
+   {% if item.1 == object_name %}
+   <td style="width:75.0%; color: yellow"> <b>{{ item.1 }}</b> </td>
+   <td align="right" style = "font-size: 13px; color: yellow"> <b> {{ item.2 }} </b></td>
+   {% else %}
    <td style="width:75.0%; color: white"> <b>{{ item.1 }}</b> </td>
-   <td align="right" style = "font-size: 13px; color: white">
-       <b> {{ item.2 }} </b></td>
+   <td align="right" style = "font-size: 13px; color: white"> <b> {{ item.2 }} </b></td>
+   {% endif %}
+
+
    </tr>
 </table>
          {% endif %}
          {% endfor %}
 
 </div>  <!-- center_list -->
+
+<div class = "illustration">
+     <p><b>001</b><i>&nbsp;&nbsp;{{illustration}}</i></p>
+</div>
 
     {% if reg_name_list %}
 
@@ -128,7 +145,7 @@
 <table style="width: 100.0%; line-height: 1.2; vertical-align: baseline;" >
    <tr>
    <td style="width:10.0%; font-size: 14px" align="right" >
-       <a href="{% url 'bookland:register-seites' reg_name.id art %}" >
+       <a href="{% url url_register reg_name.id %}" >
        <b style = "font-size: 14px" > [X] </b></a> </td>
    <td style="width:3.0%"> </td>
    <td align="left" style = "font-size: 13px">

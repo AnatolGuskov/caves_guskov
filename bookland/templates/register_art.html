@@ -66,6 +66,14 @@
         color: yellow;
     }
 
+    .illustration {
+        border: 0px solid black;
+        position: absolute;
+        left:2.0%;       top:95.0%;
+        color: yellow;
+        font-size: 12px;
+    }
+
 
      </style>
 
@@ -90,7 +98,7 @@
 <table style="width:38.0%; vertical-align: baseline;" >
    <tr>
    <td style="width:15.0%;"> <hp></hp> </td>
-   <td style="width:75.0%; color: white; font-size: 17px;"> <p><b>{{ art_name }} </b></p> </td>
+   <td style="width:77.0%; color: white; font-size: 17px;"> <p><b>{{ art_name }} </b></p> </td>
    <td align="right" style = "color: white; font-size: 16px;"> <p><b>{{ num_name }}</b></p></td>
    </tr>
 </table>
@@ -102,7 +110,7 @@
 <table style="width: 38.0%; line-height: 1.2; vertical-align: baseline; color: white" >
    <tr>
    <td style="width:15.0%" align="left" >
-       <a href="{% url url_object item.1 language %}" >
+       <a href="{% url url_object item.1 %}" >
        <b style = "font-size: 14px" > [X] </b></a>
        </td>
    <td style="width:75.0%; color: white; font-size: 14px"> <b>{{ item.1 }}</b> </td>
@@ -115,8 +123,9 @@
 
 </div>  <!-- center_list -->
 
-
-
+<div class = "illustration">
+     <p><b>001</b><i>&nbsp;&nbsp;{{illustration}}</i></p>
+</div>
 
 <div class="side_right_tytle">
         <h4 style="font-size: 16px"> <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{art_name}} - {{num_name}}</b> </h4>
@@ -128,7 +137,7 @@
 <table style="width: 100.0%; line-height: 1.2; vertical-align: baseline;" >
    <tr>
    <td style="width:10.0%; font-size: 14px" align="right" >
-       <a href="{% url 'bookland:register-seites' reg_name.id art %}" >
+       <a href="{% url url_register reg_name.id %}" >
        <b style = "font-size: 14px" > [X] </b></a>
        </td>
    <td style="width:3.0%"> </td>

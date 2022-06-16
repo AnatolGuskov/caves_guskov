@@ -42,7 +42,7 @@
         color: yellow;
     }
 
-    .side_right_seites {
+    .side_right_button {
         background: none;
         border: 0px solid white;
         overflow: auto;
@@ -51,6 +51,25 @@
         width: 35.5%;   height: 81.0%;
         padding-left: 0;
         color: yellow;
+    }
+
+    .side_right_seites {
+        background: none;
+        border: 0px solid white;
+        overflow: auto;
+        position: absolute;
+        left:101.5%;       top: 13.9%;
+        width: 35.5%;   height: 81.0%;
+        padding-left: 0;
+        color: yellow;
+    }
+
+    .illustration {
+        border: 0px solid black;
+        position: absolute;
+        left:2.0%;       top:95.0%;
+        color: yellow;
+        font-size: 12px;
     }
 
      </style>
@@ -66,10 +85,8 @@
 
     <div class="bottom-left">
         <p style = "color: white"><b> {{ language }} </b></p>
-        <a class="button" href="{% url 'bookland:seites' 1 %}">
-            &nbsp;{{ukr}}&nbsp;</a> <br>
-        <a class="button" href="{% url 'bookland:seites_eng' 1 %}">
-            &nbsp;{{eng}}&nbsp;&nbsp;&nbsp;</a>
+        <a class="button" href="{% url 'bookland:seites' topic %}">&nbsp;{{ukr}}&nbsp;</a> <br>
+        <a class="button" href="{% url 'bookland:seites_eng' topic %}">&nbsp;{{eng}}&nbsp;&nbsp;&nbsp;</a>
     </div> <!-- bottom-left -->
 
 <img src="{% static 'image/Kule2_center.jpg' %}" alt="Kuleburun_center"
@@ -77,48 +94,77 @@
 
 <div class="center_tytle">
          <h4> <b>{{ seittopic }}</b> </h4>
+<!--    <p>{{menu}}</p>-->
 </div>  <!-- center_tytle -->
 
     <div class = "center_list">
     {% for item in section_list %}
         {% if item %}
-<table style="width: 38.0%; line-height: 1.2; vertical-align: baseline; color: white" >
+<table style="width: 45.0%; line-height: 1.2; vertical-align: baseline; color: white" >
    <tr>
-   <td style="width:15.0%" align="left" >
-       <a href="{% url url_topic item.name_seites1 %}" >
+   <td style="width:12.0%" align="left" >
+       <a href="{% url url_topic item.1 %}" >
        <b style = "font-size: 14px" > [X] </b></a>
        </td>
-   <td style="width:75.0%; color: white; font-size: 14px"> <b>{{ item.name_seites1 }}</b> </td>
+   {% if item.1 == topic %}
+   <td style="width:75.0%; color: yellow; font-size: 14px"> <b>{{ item.1 }}</b> </td>
+   {% else %}
+   <td style="width:75.0%; color: white; font-size: 14px"> <b>{{ item.1 }}</b> </td>
+   {% endif %}
    </tr>
 </table>
      {% endif %}
          {% endfor %}
-    </div>
+    </div> <!-- center_list -->
+
+<div class = "illustration">
+     <p><b>001</b><i>&nbsp;&nbsp;{{illustration}}</i></p>
+</div>
 
 <div class="side_right_tytle">
          <h4> <b>{{ bookcontents }}</b> </h4>
+<!--    <p>{{topic}}</p>-->
+
 </div>  <!-- side_right_tytle -->
 
 <div class="side_right_seites">
-
-{% for seite in seites_menu %}
-   {% if seite.name_step == "1" %}
-   <h5><b>{{seite.name_seites1}}</b></h5>
+{% for item in seites_menu %}
+   {% if item.5 == "1" %}
+   <h5 style="left:-20.0%;"><b> {{item.1}} </b></h5>
    {% endif %}
 
 <table style="width: 100.0%;" >
-   <tr vertical-align = middle>
-   <td style="width:22.0%; font-size: 14px" align="right" >
-       <a href="{% url url_seiteslist seite.id %}" >
-       <b style = "font-size: 14px" > {{ seite.seites }} </b></a>
-       </td>
-   <td style="width:3.0%"> </td>
-   <td align="left" style = "font-size: 13px"> {{ seite.name_seites }}  </td>
+   <tr vertical-align = baseline>
+     <td style="width:23.0%; font-size: 14px" align="right" >
+         <b style = "font-size: 14px" > &nbsp; </b>  </td>
+     <td style="width:2.0%"> </td>
+     <td align="left" style = "font-size: 13px"> {{ item.2 }}  </td>
    </tr>
 </table>
 
 {% endfor %}
-</div> <!-- side_right_seites -->
+
+</div>   <!-- side_right_seites -->
+
+
+<div class="side_right_button">
+{% for item in menu %}
+   {% if item.name_step == "1" %}
+   <h5><b> &nbsp; </b></h5>
+   {% endif %}
+
+<table style="width: 100.0%;" >
+   <tr vertical-align = baseline>
+   <td style="width:23.0%; font-size: 14px" align="right" >
+       <a href="{% url url_seiteslist topic item.id %}" >
+       <b style = "font-size: 14px" > {{ item.seites }} </b></a>  </td>
+   <td style="width:2.0%"> </td>
+   <td align="left" style = "font-size: 13px"> &nbsp; </td>
+   </tr>
+</table>
+
+{% endfor %}
+</div>   <!-- side_right_button -->
 
 
 {% endblock %}

@@ -64,18 +64,10 @@
     {% load static %}
 
 {% block content %}
-     <div class="bottom-left">
-        <p style = "color: white"><b> {{ language }} </b></p>
-        <a class="button" href="{% url 'bookland:seites-list' 1 %}">
-            &nbsp;{{ukr}}&nbsp;</a> <br>
-        <a class="button" href="{% url 'bookland:seites-list_eng' 1 %}">
-            &nbsp;{{eng}}&nbsp;&nbsp;&nbsp;</a>
-    </div> <!-- bottom-left -->
-
 
 <div class="seite_zoom">
 
-      <img src="{% static zoom_seite.image_seites %}" alt="{{ zoom_seite.name_seites }}"/>
+      <img src="{% static zoom_seite.4 %}" alt="{{ zoom_seite.5 }}"/>
 
 </div>  <!-- seite_zoom -->
 
@@ -83,21 +75,22 @@
 <div class="side_right_tytle">
 
     {% if quelle_zoom == "seites" %}
-     <h5> <a href="{% url url_seiteslist zoom_seite.id %}"><b>[X]&nbsp;</b></a><b>{{back}}</b></h5>
+       <h5> <a href="{% url url_seiteslist 1 seite_id %}">
+           <b>[X]&nbsp;</b></a><b>{{back}}</b></h5>
     {% else %}
-     <h5> <a href="{% url 'bookland:register-seites' quelle_zoom 1 %}"><b>[X]&nbsp;</b></a><b>{{back}}</b></h5>
+       <h5> <a href="{% url url_register quelle_zoom %}">
+           <b>[X]&nbsp;</b></a><b>{{back}}</b></h5>
     {% endif %}
+
         <p style = "color: white"><b> {{ language }} </b></p>
-        <a class="button" href="{% url 'bookland:zoom' seite_id quelle_zoom %}">
-            &nbsp;{{ukr}}&nbsp;</a>
-        <a class="button" href="{% url 'bookland:zoom_eng' seite_id quelle_zoom %}">
-            &nbsp;{{eng}}&nbsp;&nbsp;&nbsp;</a>
+        <a class="button" href="{% url 'bookland:zoom' seite_id quelle_zoom %}">&nbsp;{{ukr}}&nbsp;</a>
+        <a class="button" href="{% url 'bookland:zoom_eng' seite_id quelle_zoom %}">&nbsp;{{eng}}&nbsp;&nbsp;&nbsp;</a>
 
 </div>  <!-- side_right_tytle -->
 
 <p class = "side_right_text" style = "font-size: 12px; line-height: 1.2;">
 
-{{ zoom_seite.content_seite }}
+{{ zoom_seite.3 }}
 
 </p> <!-- side_right_text -->
 

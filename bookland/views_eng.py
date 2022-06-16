@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.views import generic
 from django.db.models import Q
 
-from . models import Bookseites, Register_eng, Bookseites_eng, Text_site
+from . models import Register_eng, Bookseites, Text_site, Object_typ
 
 
 
@@ -29,11 +29,38 @@ def index_eng(request,):
 # ================== SITES_ENG  ===========================
 def seites_eng(request, topic):
     if topic == "1":
-        seites_menu = Bookseites_eng.objects.all()
+        menu = Bookseites.objects.all()
     else:
-        seites_menu = Bookseites_eng.objects.all().filter(name_seites1=topic)
+        menu = Bookseites.objects.all().filter(Q(name_eng1=topic) | Q(name_seites1=topic))
+        topic_menu = [[]]
+        for item in menu:
+            t = []
+            t.append(0)
+            t.append(item.name_seites1)
+            t.append(item.name_eng1)
+            topic_menu.append(t)
+        topic = topic_menu[1][2]
 
-    section_list = Bookseites_eng.objects.all().filter(name_step="1")
+
+    seites_menu = [[]]
+    for item in menu:
+        m = []
+        m.append(0)
+        m.append(item.name_eng1)  # 1
+        m.append(item.name_eng)  # 2
+        m.append(item.seites)  # 3
+        m.append(int(item.id))  # 4
+        m.append(item.name_step)  # 5
+        seites_menu.append(m)
+
+    section = Bookseites.objects.all().filter(name_step="1")
+
+    section_list = [[]]
+    for item in section:
+        s = []
+        s.append(0)
+        s.append(item.name_eng1)
+        section_list.append(s)
 
     return render(
         request, 'seites.html',
@@ -46,8 +73,11 @@ def seites_eng(request, topic):
 
             'seittopic': "Browse Book Pages",
             'bookcontents': "Contents of the Book",
-            'seites_menu': seites_menu,
+            'seites_menu': seites_menu, 'menu': menu,
             'section_list': section_list,
+            'topic': topic,
+            'name': 1,
+            'illustration': "Dawn at Cape Kule Burun (Mangup locality)"
 
                   }
            )
@@ -55,15 +85,48 @@ def seites_eng(request, topic):
 # ================== END seites_eng  ===========================
 
 # ================== SITES_LIST_ENG  ===========================
-def seites_list_eng(request, pk):
-    seites_list = Bookseites_eng.objects.all().filter(id__gte = pk)[:10]
-    seites_menu = Bookseites_eng.objects.all()
-    max_seit = len(seites_list)
-    seit_max = seites_list[max_seit - 1].id
-    if max_seit == 1:
-        text = "ОСТАННЯ СТОРІНКА виборки"
+def seites_list_eng(request, topic, pk):
+    if topic == "1":
+        seites = Bookseites.objects.all().filter(id__gte=pk)[:10]
+        menu = Bookseites.objects.all()
     else:
-        text = "ДАЛІ - наступні сторінки ... "
+        seites = Bookseites.objects.all().filter(
+            Q(name_eng1=topic, id__gte=pk) | Q(name_seites1=topic, id__gte=pk))[:10]
+        menu = Bookseites.objects.all().filter(
+            Q(name_eng1=topic) | Q(name_seites1=topic))
+
+    seites_list = [[]]
+    for item in seites:
+        m = []
+        m.append(0)
+        m.append(item.name_eng1)  # 1
+        m.append(item.name_eng)  # 2
+        m.append(item.seites)  # 3
+        m.append(item.id)  # 4
+        m.append(item.image_seites)  # 5
+        seites_list.append(m)
+    seites_list = seites_list[1:]
+
+    seites_menu = [[]]
+    for item in menu:
+        m = []
+        m.append(0)
+        m.append(item.name_eng1)  # 1
+        m.append(item.name_eng)  # 2
+        m.append(item.seites)  # 3
+        m.append(item.id)  # 4
+        m.append(item.name_step)  # 5
+        seites_menu.append(m)
+    seites_menu = seites_menu[1:]
+
+
+
+    max_seit = len(seites)
+    seit_max = seites[max_seit - 1].id
+    if max_seit == 1:
+        text = "LAST PAGE of the page sample"
+    else:
+        text = "NEXT - the following pages ..."
 
 
     return render(
@@ -78,17 +141,27 @@ def seites_list_eng(request, pk):
             'seites_list': seites_list,
             'seites_menu': seites_menu,
             'seit_max': seit_max,
-            'text': text, 'site': "sites", 'zoom': "Zoom/Translate",
+            'text': text, 'site': "pages", 'zoom': "Zoom/Translate",
             'bookcontents': "Contents of the Book",
+            'seit_pk': pk, 'topic': topic,
         }
            )
-# ================== END seites_list_tng  ===========================
+# ================== END seites_list  ===========================
+
 
 # ================== ZOOM_SEITE_ENG  ===========================
 def zoom_seite_eng(request, pk, quelle):
 
-    zoom_seite = Bookseites_eng.objects.get(pk = pk)
-    quelle_zoom = quelle
+    seite = Bookseites.objects.get(pk = pk)
+
+    zoom_seite = []
+
+    zoom_seite.append(0)
+    zoom_seite.append(seite.name_eng1)  # 1
+    zoom_seite.append(seite.name_eng)  # 2
+    zoom_seite.append(seite.content_eng)  # 3
+    zoom_seite.append(seite.image_seites)  # 4
+    zoom_seite.append(seite.name_seites)  # 5
 
     return render(
         request, 'zoom_seite.html',
@@ -101,7 +174,7 @@ def zoom_seite_eng(request, pk, quelle):
             'eng': "english", 'ukr': "ukrainish",
 
             'zoom_seite': zoom_seite,  'seite_id': pk,
-            'quelle_zoom': quelle_zoom,
+            'quelle_zoom': quelle,
             'back': "Back"
 
         }
@@ -109,16 +182,19 @@ def zoom_seite_eng(request, pk, quelle):
 
 # ================== END zoom_seite  ===========================
 
-# ================== REGISTER ART TNG ===========================
+# ================== REGISTER ART ENG ===========================
 def register_art_eng(request, art):
 
     if art == "1":
+        art_key = "Geographical names"
         art_name = "Geographical names"
     if art == "2":
-        art_name = "Населені пункти"
+        art_key = "Settlements"
+        art_name = "Settlements"
     if art == "3":
-        art_name = "Tourist objects"
-    reg_name_list = Register_eng.objects.all().filter(reg_art = art_name)
+        art_key = "Tourist objects"
+        art_name = "Tourist Facilities"
+    reg_name_list = Register_eng.objects.all().filter(reg_art = art_key)
     num_name = len(reg_name_list)
 
     art_object = set(())
@@ -152,16 +228,21 @@ def register_art_eng(request, art):
 
             'art_object': art_object,
             'art_object_num': art_object_num,
+            'illustration': "Dawn at Cape Kule Burun (Mangup locality)",
 
         }
            )
 # ================== END register_art_eng ===========================
 
 # ================== REGISTER OBJECT ENG ===========================
-def register_object_eng(request, obj, language):
+def register_object_eng(request, obj,):
 
-    object_name = obj  # обраний тип об'єкту
-    reg_name_list = Register_eng.objects.all().filter(reg_s_name = obj)  # список об'ектів обраного типу
+    typ_list = Object_typ.objects.get(Q(ukr=obj) | Q(eng=obj))
+    object_name = typ_list.eng
+
+
+    # object_name = obj
+    reg_name_list = Register_eng.objects.all().filter(reg_s_name = object_name)  # список об'ектів обраного типу
     num_name = len(reg_name_list)   # кількість об'ектів обраного типу
 
     art = reg_name_list [0].reg_art    # вид показчика (географія, міста, туроб'єкти)
@@ -180,6 +261,7 @@ def register_object_eng(request, obj, language):
         l.append(item)
         l.append(len(Register_eng.objects.all().filter(reg_s_name=item)))
         art_object_num.append(l)
+    art_object_num = art_object_num[1:]
     art_object_num.sort()
 
     return render(
@@ -198,17 +280,18 @@ def register_object_eng(request, obj, language):
             'num_name_art': num_name_art,
             'art_object': art_object,
             'art_object_num': art_object_num,
+            'illustration': "Dawn at Cape Kule Burun (Mangup locality)",
 
         }
            )
 # ================== END register_object_eng ===========================
 
 # ================== REGISTER SEITES_eng ===========================
-def register_seites_eng(request, pk, art):
+def register_seites_eng(request, pk,):
 
     reg_seites = Register_eng.objects.get(pk = pk) # сторінки з вказаним об'єктом
     reg_name = reg_seites.reg_f_name           # найменування об'єкту
-    reg_num =  reg_seites.reg_numbers          # нумера сторінок з вказаним об'єктом
+    reg_numbers =  reg_seites.reg_numbers          # нумера сторінок з вказаним об'єктом
     reg_art =  reg_seites.reg_art              # вид показчика об'єкта
     reg_pk = pk                                # код об'єкта
     reg_object = reg_seites.reg_s_name         # тип об'єкта
@@ -217,17 +300,39 @@ def register_seites_eng(request, pk, art):
     num_name = len(reg_object_list)
     reg_name_list = Register_eng.objects.all().filter(reg_art=reg_art) # список всіх об'єктів виду показчика
 
+    seites = reg_seites.reg_seites.all()
+    seites_list = [[], ]
+    for item in seites:
+        l = []
+        l.append(0)
+        l.append(item.name_eng1)  # 1
+        l.append(item.name_eng)  # 2
+        l.append(item.seites)  # 3
+        l.append(item.id)  # 4
+        l.append(item.image_seites)  # 5
+        seites_list.append(l)
+    seites_list = seites_list[1:]
+
     return render(
         request, 'register_seites.html',
         context = {
+            'template': "base_generic_eng.html",
+            'url_zoom': "bookland:zoom_eng",
+            'url_register': "bookland:register-seites_eng",
+            'language': "ENG",
+            'eng': "english", 'ukr': "ukrainish",
+
             'reg_seites': reg_seites,
             'object_name': reg_object,
             'reg_object_list': reg_object_list,
             'num_name': num_name,
             'reg_name_list': reg_name_list,
             'reg_art': reg_art, 'reg_name': reg_name,
-            'reg_num': reg_num,
+            'reg_numbers': reg_numbers,
             'reg_pk': reg_pk,
+            'seites_list': seites_list,
+            'site': "pages", 'zoom': "Zoom/Translate",
+
 
         }
            )

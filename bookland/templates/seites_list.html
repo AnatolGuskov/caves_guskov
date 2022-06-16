@@ -79,8 +79,8 @@
 
     <div class="bottom-left">
         <p style = "color: white"><b> {{language}} </b></p>
-        <a class="button" href="{% url 'bookland:seites-list' 1 %}">&nbsp;{{ukr}}&nbsp;</a> <br>
-        <a class="button" href="{% url 'bookland:seites-list_eng' 1 %}">&nbsp;{{eng}}&nbsp;&nbsp;&nbsp;</a>
+        <a class="button" href="{% url 'bookland:seites-list' topic seit_pk %}">&nbsp;{{ukr}}&nbsp;</a> <br>
+        <a class="button" href="{% url 'bookland:seites-list_eng' topic seit_pk %}">&nbsp;{{eng}}&nbsp;&nbsp;&nbsp;</a>
     </div> <!-- bottom-left -->
 
 
@@ -91,21 +91,21 @@
     <table style="width: 99.0%; color: white">
         <tr>
             <td style="width:70.0%; font-size: 14px; color: white" >
-                &nbsp;&nbsp;{{site}} {{ seite.seites }} &nbsp; <b>{{ seite.name_seites1 }}&nbsp;{{ seite.name_seites }}</b></td>
+                &nbsp;&nbsp;{{site}} {{ seite.3 }} &nbsp; <b>{{ seite.1 }}&nbsp;{{ seite.2 }}</b></td>
             <td align="right" style="font-size: 14px; color: white">
-                <a href="{% url url_zoom seite.id 'seites'%}">
+                <a href="{% url url_zoom seit_pk 'seites' %}">
                    <strong>[X]&nbsp;</strong></a>{{zoom}}</td>
         </tr>
     </table>
 
 
-        <img src="{% static seite.image_seites %}" alt="{{ seite.name_seites }}"
+        <img src="{% static seite.5 %}" alt="{{ seite.name_seites }}"
                      style="width:100%;"/>
         <br> <br>
       {% endfor %}
 
-    <a href="{% url 'bookland:seites-list' seit_max %}" >
-       <b style = "font-size: 12px" > {{ text }} </b></a>
+    <a href="{% url url_seiteslist topic seit_max %}" >
+       <b style = "font-size: 14px" > &nbsp;&nbsp;{{ text }} </b></a>
     <br> <br>
 
 </div>  <!-- seites_list -->
@@ -117,22 +117,24 @@
 <div class="side_right_seites">
 
 {% for seite in seites_menu %}
-   {% if seite.name_step == "1" %}
-   <h5><b>{{seite.name_seites1}}</b></h5>
+   {% if seite.5 == "1" %}
+   <h5><b>{{seite.1}}</b></h5>
    {% endif %}
 
 <table style="width: 100.0%;" >
    <tr vertical-align = middle>
    <td style="width:22.0%; font-size: 14px" align="right" >
-       <a href="{% url url_seiteslist seite.id %}" >
-       <b style = "font-size: 14px" > {{ seite.seites }} </b></a>
+       <a href="{% url url_seiteslist topic seite.4 %}" >
+       <b style = "font-size: 14px" > {{ seite.3 }} </b></a>
        </td>
    <td style="width:3.0%"> </td>
-   <td align="left" style = "font-size: 13px"> {{ seite.name_seites }}  </td>
+   <td align="left" style = "font-size: 13px">{{ seite.2 }}  </td>
    </tr>
 </table>
 
 {% endfor %}
+
+
 </div> <!-- side_right_seites -->
 
     {% else %}

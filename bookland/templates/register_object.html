@@ -99,8 +99,8 @@
 <table style="width: 38.0%; vertical-align: baseline;" >
    <tr>
    <td style="width:15.0%;"> <hp></hp> </td>
-   <td style="width:77.0%; color: white; font-size: 17px;"> <p><b>{{ art }} </b></p> </td>
-   <td align="right" style = "color: white; font-size: 16px;"> <p><b>{{ num_name_art }}</b></p></td>
+   <td style="width:77.0%; color: white; font-size: 18px;"> <p><b>{{ art }} </b></p> </td>
+   <td align="right" style = "color: white; font-size: 17px;"> <p><b>{{ num_name_art }}</b></p></td>
    </tr>
 </table>
 </div>  <!-- center_tytle  -->
@@ -115,10 +115,10 @@
 
    {% if item.1 == object_name %}
    <td style="width:75.0%; color: yellow"> <b>{{ item.1 }}</b> </td>
-   <td align="right" style = "font-size: 13px; color: yellow"> <b> {{ item.2 }} </b></td>
+   <td align="right" style = "font-size: 14px; color: yellow"> <b> {{ item.2 }} </b></td>
    {% else %}
    <td style="width:75.0%; color: white"> <b>{{ item.1 }}</b> </td>
-   <td align="right" style = "font-size: 13px; color: white"> <b> {{ item.2 }} </b></td>
+   <td align="right" style = "font-size: 14px; color: white"> <b> {{ item.2 }} </b></td>
    {% endif %}
 
 
@@ -148,7 +148,7 @@
        <a href="{% url url_register reg_name.id %}" >
        <b style = "font-size: 14px" > [X] </b></a> </td>
    <td style="width:3.0%"> </td>
-   <td align="left" style = "font-size: 13px">
+   <td align="left" style = "font-size: 14px">
        {{reg_name.reg_f_name}} </td>
    </tr>
 </table>

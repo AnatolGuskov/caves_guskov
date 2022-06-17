@@ -31,7 +31,7 @@ urlpatterns = [
     path('register/object/<obj>', views.register_object, name='register-object'),
     path('eng/register/object/<obj>', views_eng.register_object_eng, name='register-object_eng'),
 
-    path('register/<pk>>', views.register_seites, name='register-seites'),
-    path('eng/register/<pk>', views_eng.register_seites_eng, name='register-seites_eng'),
+    path('register/seites/<pk>>', views.register_seites, name='register-seites'),
+    path('eng/register/seites/<pk>', views_eng.register_seites_eng, name='register-seites_eng'),
 
 ]

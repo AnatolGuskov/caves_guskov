@@ -29,29 +29,29 @@ def index_eng(request,):
 # ================== SITES_ENG  ===========================
 def seites_eng(request, topic):
     if topic == "1":
-        menu = Bookseites.objects.all()
+        seites = Bookseites.objects.all()
     else:
-        menu = Bookseites.objects.all().filter(Q(name_eng1=topic) | Q(name_seites1=topic))
+        seites = Bookseites.objects.all().filter(Q(name_eng1=topic) | Q(name_seites1=topic))
         topic_menu = [[]]
-        for item in menu:
+        for item in seites:
             t = []
             t.append(0)
-            t.append(item.name_seites1)
             t.append(item.name_eng1)
+            t.append(item.name_eng)
             topic_menu.append(t)
         topic = topic_menu[1][2]
 
-
-    seites_menu = [[]]
-    for item in menu:
+    seites_list = [[]]
+    for item in seites:
         m = []
         m.append(0)
         m.append(item.name_eng1)  # 1
         m.append(item.name_eng)  # 2
         m.append(item.seites)  # 3
-        m.append(int(item.id))  # 4
+        m.append(item.id)  # 4
         m.append(item.name_step)  # 5
-        seites_menu.append(m)
+        seites_list.append(m)
+    seites_list = seites_list[1:]
 
     section = Bookseites.objects.all().filter(name_step="1")
 
@@ -73,7 +73,7 @@ def seites_eng(request, topic):
 
             'seittopic': "Browse Book Pages",
             'bookcontents': "Contents of the Book",
-            'seites_menu': seites_menu, 'menu': menu,
+            'seites_list': seites_list,
             'section_list': section_list,
             'topic': topic,
             'name': 1,
@@ -163,6 +163,9 @@ def zoom_seite_eng(request, pk, quelle):
     zoom_seite.append(seite.image_seites)  # 4
     zoom_seite.append(seite.name_seites)  # 5
 
+    topic = seite.name_eng1
+    name = seite.name_eng
+
     return render(
         request, 'zoom_seite.html',
         context = {
@@ -175,7 +178,7 @@ def zoom_seite_eng(request, pk, quelle):
 
             'zoom_seite': zoom_seite,  'seite_id': pk,
             'quelle_zoom': quelle,
-            'back': "Back"
+            'back': "Back", 'topic': topic, 'name': name,
 
         }
            )
@@ -192,8 +195,9 @@ def register_art_eng(request, art):
         art_key = "Settlements"
         art_name = "Settlements"
     if art == "3":
-        art_key = "Tourist objects"
+        art_key = "Tourist object"
         art_name = "Tourist Facilities"
+
     reg_name_list = Register_eng.objects.all().filter(reg_art = art_key)
     num_name = len(reg_name_list)
 

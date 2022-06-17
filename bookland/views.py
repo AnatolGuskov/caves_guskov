@@ -28,32 +28,32 @@ def index(request):
             'text_annotation': text_annotation,
         }
            )
-# ================== SITES  ===========================
+# ================== SEITES  ===========================
 def seites(request, topic):
     if topic == "1":
-        menu = Bookseites.objects.all()
+        seites = Bookseites.objects.all()
     else:
-        menu = Bookseites.objects.all().filter(Q(name_eng1=topic) | Q(name_seites1=topic))
+        seites = Bookseites.objects.all().filter(Q(name_eng1=topic) | Q(name_seites1=topic))
         topic_menu = [[]]
-        for item in menu:
+        for item in seites:
             t = []
             t.append(0)
             t.append(item.name_seites1)
-            t.append(item.name_eng1)
+            t.append(item.name_seites)
             topic_menu.append(t)
         topic = topic_menu[1][1]
 
-
-    seites_menu = [[]]
-    for item in menu:
+    seites_list = [[]]
+    for item in seites:
         m = []
         m.append(0)
-        m.append(item.name_seites1)  #1
-        m.append(item.name_seites)   #2
-        m.append(item.seites)       #3
-        m.append(item.id)       #4
-        m.append(item.name_step)     #5
-        seites_menu.append(m)
+        m.append(item.name_seites1)  # 1
+        m.append(item.name_seites)  # 2
+        m.append(item.seites)  # 3
+        m.append(item.id)  # 4
+        m.append(item.name_step)  # 5
+        seites_list.append(m)
+    seites_list = seites_list[1:]
 
     section = Bookseites.objects.all().filter(name_step = "1")
 
@@ -77,9 +77,9 @@ def seites(request, topic):
 
             'seittopic': "Перегляд сторінок Книги",
             'bookcontents': "Зміст Книги",
-            'seites_menu': seites_menu, 'menu': menu,
+            'seites_list': seites_list,
             'section_list': section_list,
-            'topic': topic, 'menu': menu,
+            'topic': topic, 'seites': seites,
             'name': 1,
             'illustration': "Світанок у миса Куле-бурун (місцевість Мангуп)"
                   }
@@ -165,7 +165,8 @@ def zoom_seite(request, pk, quelle):
     zoom_seite.append(seite.image_seites)   #4
     zoom_seite.append(seite.name_seites)    #5
 
-
+    topic = seite.name_seites1
+    name = seite.name_seites
     return render(
         request, 'zoom_seite.html',
         context = {
@@ -177,8 +178,8 @@ def zoom_seite(request, pk, quelle):
             'eng': "англійська", 'ukr': "українська",
 
             'zoom_seite': zoom_seite, 'seite_id': pk,
-            'quelle_zoom': quelle,
-            'back': "Назад"
+            'quelle_zoom': quelle, 'topic': topic,
+            'back': "Назад",  'name': name,
 
         }
            )
@@ -198,9 +199,8 @@ def register_art(request, art):
         art_key = "Туристичні об'єкти"
         art_name = "Туристичні об'єкти"
 
-    reg_name_list = Register.objects.all().filter(reg_art = art_key)
+    reg_name_list = Register.objects.all().filter(reg_art=art_key)
     num_name = len(reg_name_list)
- 
 
     art_object = set(())
     for object in reg_name_list:
@@ -208,7 +208,7 @@ def register_art(request, art):
         # object_typ = object_typ_list.ukr
         art_object.add(object.reg_s_name)
 
-    art_object_num = [[],]
+    art_object_num = [[], ]
     for item in art_object:
         l = []
         l.append(0)
@@ -218,7 +218,6 @@ def register_art(request, art):
         art_object_num.append(l)
 
     art_object_num.sort()
-
 
     return render(
         request, 'register_art.html',

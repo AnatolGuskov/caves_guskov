@@ -58,7 +58,7 @@
         border: 0px solid white;
         overflow: auto;
         position: absolute;
-        left:101.5%;       top: 13.9%;
+        left:101.5%;       top: 18.0%;
         width: 35.5%;   height: 81.0%;
         padding-left: 0;
         color: yellow;
@@ -93,7 +93,7 @@
                  style="width:100%;height:100%;"/>
 
 <div class="center_tytle">
-         <h4> <b>{{ seittopic }}</b> </h4>
+         <h4 style = "font-size: 18px"> <b>{{ seittopic }}</b> </h4>
 <!--    <p>{{menu}}</p>-->
 </div>  <!-- center_tytle -->
 
@@ -128,43 +128,24 @@
 </div>  <!-- side_right_tytle -->
 
 <div class="side_right_seites">
-{% for item in seites_menu %}
-   {% if item.5 == "1" %}
-   <h5 style="left:-20.0%;"><b> {{item.1}} </b></h5>
+{% for seite in seites_list %}
+   {% if seite.5 == "1" %}
+   <h5 style="left:-20.0%;"><b> {{seite.1}} </b></h5>
    {% endif %}
 
 <table style="width: 100.0%;" >
    <tr vertical-align = baseline>
      <td style="width:23.0%; font-size: 14px" align="right" >
-         <b style = "font-size: 14px" > &nbsp; </b>  </td>
+         <a href="{% url url_seiteslist topic seite.4 %}" >
+             <b style = "font-size: 14px" >{{ seite.3 }}</b></a>  </td>
      <td style="width:2.0%"> </td>
-     <td align="left" style = "font-size: 13px"> {{ item.2 }}  </td>
+     <td align="left" style = "font-size: 13px"> {{ seite.2 }}  </td>
    </tr>
 </table>
 
 {% endfor %}
 
 </div>   <!-- side_right_seites -->
-
-
-<div class="side_right_button">
-{% for item in menu %}
-   {% if item.name_step == "1" %}
-   <h5><b> &nbsp; </b></h5>
-   {% endif %}
-
-<table style="width: 100.0%;" >
-   <tr vertical-align = baseline>
-   <td style="width:23.0%; font-size: 14px" align="right" >
-       <a href="{% url url_seiteslist topic item.id %}" >
-       <b style = "font-size: 14px" > {{ item.seites }} </b></a>  </td>
-   <td style="width:2.0%"> </td>
-   <td align="left" style = "font-size: 13px"> &nbsp; </td>
-   </tr>
-</table>
-
-{% endfor %}
-</div>   <!-- side_right_button -->
 
 
 {% endblock %}

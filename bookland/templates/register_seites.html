@@ -68,12 +68,12 @@
 
 <div class="bottom-left">
     <p style = "color: white"><b> {{language}} </b></p>
-    <a class="button" href="{% url 'bookland:register-seites' reg_pk language %}">&nbsp;{{ukr}}&nbsp;</a> <br>
-    <a class="button" href="{% url 'bookland:register-seites_eng' reg_pk language %}">&nbsp;{{eng}}&nbsp;&nbsp;&nbsp;</a>
+    <a class="button" href="{% url 'bookland:register-seites' reg_pk %}">&nbsp;{{ukr}}&nbsp;</a> <br>
+    <a class="button" href="{% url 'bookland:register-seites_eng' reg_pk %}">&nbsp;{{eng}}&nbsp;&nbsp;&nbsp;</a>
 </div> <!-- bottom-left -->
 
 
-<p> {{reg_seites}} </p>
+
 
 <div class="list_tytle">
 
@@ -109,7 +109,7 @@
 
 
 <div class="side_right_tytle">
-        <h5> <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{object_name}} - {{num_name}}</b> </h5>
+        <h5 style="font-size: 16px"> <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{object_name}} - {{num_name}}</b> </h5>
 </div>  <!-- side_right_tytle -->
 
 <div class="side_right_register">
@@ -118,10 +118,10 @@
 <table style="width: 100.0%; line-height: 1.2; vertical-align: baseline;" >
    <tr>
    <td style="width:10.0%; font-size: 14px" align="right" >
-       <a href="{% url 'bookland:register-seites' reg_name.id language %}" >
+       <a href="{% url url_register reg_name.id %}" >
        <b style = "font-size: 14px" > [X] </b></a> </td>
    <td style="width:2.0%"> </td>
-   <td align="left" style = "font-size: 13px">
+   <td align="left" style = "font-size: 14px">
        {{reg_name.reg_f_name}} </td>
    </tr>
 </table>

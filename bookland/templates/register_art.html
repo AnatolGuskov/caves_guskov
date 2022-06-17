@@ -92,14 +92,14 @@
      </div> <!-- bottom-left -->
 
 <img src="{% static 'image/Kule2_center.jpg' %}" alt="Kuleburun_center"
-                 style="width:100%;height:100%;"/>
+                 style="width:100%; height:100%;"/>
 
 <div class="center_tytle">
 <table style="width:38.0%; vertical-align: baseline;" >
    <tr>
    <td style="width:15.0%;"> <hp></hp> </td>
-   <td style="width:77.0%; color: white; font-size: 17px;"> <p><b>{{ art_name }} </b></p> </td>
-   <td align="right" style = "color: white; font-size: 16px;"> <p><b>{{ num_name }}</b></p></td>
+   <td style="width:77.0%; color: white; font-size: 18px;"> <p><b>{{ art_name }} </b></p> </td>
+   <td align="right" style = "color: white; font-size: 17px;"> <p><b>{{ num_name }}</b></p></td>
    </tr>
 </table>
 </div>  <!-- center_tytle  -->
@@ -114,8 +114,7 @@
        <b style = "font-size: 14px" > [X] </b></a>
        </td>
    <td style="width:75.0%; color: white; font-size: 14px"> <b>{{ item.1 }}</b> </td>
-   <td align="right" style = "font-size: 13px; color: white">
-       <b> {{ item.2 }} </b></td>
+   <td align="right" style = "font-size: 14px; color: white"> <b> {{ item.2 }} </b></td>
    </tr>
 </table>
          {% endif %}
@@ -137,12 +136,10 @@
 <table style="width: 100.0%; line-height: 1.2; vertical-align: baseline;" >
    <tr>
    <td style="width:10.0%; font-size: 14px" align="right" >
-       <a href="{% url url_register reg_name.id %}" >
-       <b style = "font-size: 14px" > [X] </b></a>
+       <a href="{% url url_register reg_name.id %}" > <b> [X] </b></a>
        </td>
    <td style="width:3.0%"> </td>
-   <td align="left" style = "font-size: 13px">
-       {{reg_name.reg_f_name}} </td>
+   <td align="left" style = "font-size: 14px"> {{reg_name.reg_f_name}} </td>
    </tr>
 </table>
 

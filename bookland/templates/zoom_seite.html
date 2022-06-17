@@ -67,7 +67,8 @@
 
 <div class="seite_zoom">
 
-      <img src="{% static zoom_seite.4 %}" alt="{{ zoom_seite.5 }}"/>
+      <img src="{% static zoom_seite.4 %}" alt="{{ zoom_seite.5 }}"
+      style="width:100%;"/>
 
 </div>  <!-- seite_zoom -->
 
@@ -75,7 +76,7 @@
 <div class="side_right_tytle">
 
     {% if quelle_zoom == "seites" %}
-       <h5> <a href="{% url url_seiteslist 1 seite_id %}">
+       <h5> <a href="{% url url_seiteslist topic seite_id %}">
            <b>[X]&nbsp;</b></a><b>{{back}}</b></h5>
     {% else %}
        <h5> <a href="{% url url_register quelle_zoom %}">
@@ -85,6 +86,10 @@
         <p style = "color: white"><b> {{ language }} </b></p>
         <a class="button" href="{% url 'bookland:zoom' seite_id quelle_zoom %}">&nbsp;{{ukr}}&nbsp;</a>
         <a class="button" href="{% url 'bookland:zoom_eng' seite_id quelle_zoom %}">&nbsp;{{eng}}&nbsp;&nbsp;&nbsp;</a>
+
+    <h5 style = "font-size: 12px; line-height: 1.2;"><b>{{topic}} {{name}}</b></h5>
+
+
 
 </div>  <!-- side_right_tytle -->
 

@@ -51,7 +51,7 @@ class Register(models.Model):
     # def get_absolute_url(self):
     #     return reverse('poems:genre-detail', args=[str(self.id)])
 
-# ========================= BOOKSEITES =======
+# ========================= BOOKSEITES_ENG =======
 # class Bookseites_eng(models.Model):
 #     class Meta:
 #         ordering = ["image_seites"]

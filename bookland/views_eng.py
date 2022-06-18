@@ -75,9 +75,9 @@ def seites_eng(request, topic):
             'bookcontents': "Contents of the Book",
             'seites_list': seites_list,
             'section_list': section_list,
-            'topic': topic,
+            'topic': topic, 'seites': seites,
             'name': 1,
-            'illustration': "Dawn at Cape Kule Burun (Mangup locality)"
+            'illustration': "Dawn at Cape Kule Burun (Mangup area)"
 
                   }
            )
@@ -86,12 +86,15 @@ def seites_eng(request, topic):
 
 # ================== SITES_LIST_ENG  ===========================
 def seites_list_eng(request, topic, pk):
+    pk_s = Bookseites.objects.get(pk=pk)
+    pk_site = pk_s.image_seites
+
     if topic == "1":
-        seites = Bookseites.objects.all().filter(id__gte=pk)[:10]
+        seites = Bookseites.objects.all().filter(image_seites__gte=pk_site)[:10]
         menu = Bookseites.objects.all()
     else:
         seites = Bookseites.objects.all().filter(
-            Q(name_eng1=topic, id__gte=pk) | Q(name_seites1=topic, id__gte=pk))[:10]
+            Q(name_eng1=topic, image_seites__gte=pk_site) | Q(name_seites1=topic, image_seites__gte=pk_site))[:10]
         menu = Bookseites.objects.all().filter(
             Q(name_eng1=topic) | Q(name_seites1=topic))
 
@@ -232,7 +235,7 @@ def register_art_eng(request, art):
 
             'art_object': art_object,
             'art_object_num': art_object_num,
-            'illustration': "Dawn at Cape Kule Burun (Mangup locality)",
+            'illustration': "Dawn at Cape Kule Burun (Mangup area)",
 
         }
            )
@@ -284,7 +287,7 @@ def register_object_eng(request, obj,):
             'num_name_art': num_name_art,
             'art_object': art_object,
             'art_object_num': art_object_num,
-            'illustration': "Dawn at Cape Kule Burun (Mangup locality)",
+            'illustration': "Dawn at Cape Kule Burun (Mangup area)",
 
         }
            )

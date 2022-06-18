@@ -42,16 +42,23 @@
         color: yellow;
     }
 
+    .side_right_seit {
+        background: none;
+        position: absolute;
+        left:101.5%;       top:18.0%;
+        width: 37.0%;   height: 5.0%;
+        color: yellow;
+    }
+
     .side_right_text {
         background: none;
         border: 0px solid black;
         white-space: pre-line;
         overflow-y: auto; /* Add vertical scrollbar */
         position: absolute;
-        left:101.5%;       top:18.0%;
+        left:101.5%;       top:19.0%;
         width: 37.0%;   height: 80.0%;
         color: white;
-
     }
 
      </style>
@@ -67,8 +74,7 @@
 
 <div class="seite_zoom">
 
-      <img src="{% static zoom_seite.4 %}" alt="{{ zoom_seite.5 }}"
-      style="width:100%;"/>
+      <img src="{% static zoom_seite.4 %}" alt="{{ zoom_seite.5 }}" style="width:100%;"/>
 
 </div>  <!-- seite_zoom -->
 
@@ -87,17 +93,18 @@
         <a class="button" href="{% url 'bookland:zoom' seite_id quelle_zoom %}">&nbsp;{{ukr}}&nbsp;</a>
         <a class="button" href="{% url 'bookland:zoom_eng' seite_id quelle_zoom %}">&nbsp;{{eng}}&nbsp;&nbsp;&nbsp;</a>
 
-    <h5 style = "font-size: 12px; line-height: 1.2;"><b>{{topic}} {{name}}</b></h5>
-
-
-
 </div>  <!-- side_right_tytle -->
 
-<p class = "side_right_text" style = "font-size: 12px; line-height: 1.2;">
 
-{{ zoom_seite.3 }}
+<div class = "side_right_seit">
+<p style = "font-size: 13px; line-height: 1.2;"><b>{{topic}} {{name}}</b></p>
+</div>
 
-</p> <!-- side_right_text -->
+<div class = "side_right_text">
+<p style = "font-size: 13px; line-height: 1.2;">{{ zoom_seite.3 }}</p>
+</div>  <!-- side_right_text  -->
+
+
 
 
 

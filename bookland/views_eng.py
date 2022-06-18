@@ -39,7 +39,7 @@ def seites_eng(request, topic):
             t.append(item.name_eng1)
             t.append(item.name_eng)
             topic_menu.append(t)
-        topic = topic_menu[1][2]
+        topic = topic_menu[1][1]
 
     seites_list = [[]]
     for item in seites:

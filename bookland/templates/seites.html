@@ -107,9 +107,9 @@
        <b style = "font-size: 14px" > [X] </b></a>
        </td>
    {% if item.1 == topic %}
-   <td style="width:75.0%; color: yellow; font-size: 14px"> <b>{{ item.1 }}</b> </td>
+   <td style="width:75.0%; color: yellow; font-size: 15px"> <b>{{ item.2 }}{{ item.1 }}</b> </td>
    {% else %}
-   <td style="width:75.0%; color: white; font-size: 14px"> <b>{{ item.1 }}</b> </td>
+   <td style="width:75.0%; color: white; font-size: 15px"> <b>{{ item.2 }}{{ item.1 }}</b> </td>
    {% endif %}
    </tr>
 </table>
@@ -130,7 +130,7 @@
 <div class="side_right_seites">
 {% for seite in seites_list %}
    {% if seite.5 == "1" %}
-   <h5 style="left:-20.0%;"><b> {{seite.1}} </b></h5>
+   <h5 style="left:-20.0%; font-size: 14px"><b> {{seite.1}} </b></h5>
    {% endif %}
 
 <table style="width: 100.0%;" >

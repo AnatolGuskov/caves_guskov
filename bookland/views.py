@@ -32,14 +32,16 @@ def index(request):
 def seites(request, topic):
     if topic == "1":
         seites = Bookseites.objects.all()
+        bookcontents = "Зміст книги"
     else:
         seites = Bookseites.objects.all().filter(Q(name_eng1=topic) | Q(name_seites1=topic))
+        bookcontents = "Зміст розділу"
         topic_menu = [[]]
         for item in seites:
             t = []
             t.append(0)
-            t.append(item.name_seites1)
-            t.append(item.name_seites)
+            t.append(item.name_seites1)     #1
+            t.append(item.name_seites)      #2
             topic_menu.append(t)
         topic = topic_menu[1][1]
 
@@ -61,7 +63,11 @@ def seites(request, topic):
     for item in section:
         s = []
         s.append(0)
-        s.append(item.name_seites1)
+        s.append(item.name_seites1)     #1
+        if ": печерне місто" in item.name_seites1:
+            s.append(".:")               #2
+        else:
+            s.append("")                 #2
         section_list.append(s)
 
 
@@ -76,7 +82,7 @@ def seites(request, topic):
             'ukr': "українська",
 
             'seittopic': "Перегляд сторінок Книги",
-            'bookcontents': "Зміст Книги",
+            'bookcontents': bookcontents,
             'seites_list': seites_list,
             'section_list': section_list,
             'topic': topic, 'seites': seites,

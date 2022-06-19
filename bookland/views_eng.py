@@ -30,8 +30,10 @@ def index_eng(request,):
 def seites_eng(request, topic):
     if topic == "1":
         seites = Bookseites.objects.all()
+        bookcontents = "Book content"
     else:
         seites = Bookseites.objects.all().filter(Q(name_eng1=topic) | Q(name_seites1=topic))
+        bookcontents = "Section content"
         topic_menu = [[]]
         for item in seites:
             t = []
@@ -60,6 +62,10 @@ def seites_eng(request, topic):
         s = []
         s.append(0)
         s.append(item.name_eng1)
+        if ": cave town" in item.name_eng1:
+            s.append(".:")               #2
+        else:
+            s.append("")                 #2
         section_list.append(s)
 
     return render(
@@ -72,7 +78,7 @@ def seites_eng(request, topic):
             'eng': "english", 'ukr': "ukrainish",
 
             'seittopic': "Browse Book Pages",
-            'bookcontents': "Contents of the Book",
+            'bookcontents': bookcontents,
             'seites_list': seites_list,
             'section_list': section_list,
             'topic': topic, 'seites': seites,

@@ -104,12 +104,20 @@
    <tr>
    <td style="width:12.0%" align="left" >
        <a href="{% url url_topic item.1 %}" >
-       <b style = "font-size: 14px" > [X] </b></a>
-       </td>
+       <b style = "font-size: 14px" > [X] </b></a> </td>
+
    {% if item.1 == topic %}
-   <td style="width:75.0%; color: yellow; font-size: 15px"> <b>{{ item.2 }}{{ item.1 }}</b> </td>
+       {% if item.2 %}
+   <td style="width:75.0%; color: yellow; font-size: 15px"> <b>&nbsp;&nbsp;&nbsp;&nbsp;{{ item.1 }}</b> </td>
+       {% else %}
+   <td style="width:75.0%; color: yellow; font-size: 15px"> <b> {{ item.1 }}</b> </td>
+       {% endif %}
    {% else %}
-   <td style="width:75.0%; color: white; font-size: 15px"> <b>{{ item.2 }}{{ item.1 }}</b> </td>
+       {% if item.2 %}
+   <td style="width:75.0%; color: white; font-size: 15px"> <b>&nbsp;&nbsp;&nbsp;&nbsp;{{ item.1 }}</b> </td>
+       {% else %}
+   <td style="width:75.0%; color: white; font-size: 15px"> <b>{{ item.1 }}</b> </td>
+       {% endif %}
    {% endif %}
    </tr>
 </table>

@@ -93,7 +93,7 @@
             <td style="width:70.0%; font-size: 14px; color: white" >
                 &nbsp;&nbsp;{{site}} {{ seite.3 }} &nbsp; <b>{{ seite.1 }}&nbsp;{{ seite.2 }}</b></td>
             <td align="right" style="font-size: 14px; color: white">
-                <a href="{% url url_zoom seit_pk 'seites' %}">
+                <a href="{% url url_zoom seite.4 'seites' %}">
                    <strong>[X]&nbsp;</strong></a>{{zoom}}</td>
         </tr>
     </table>
@@ -123,11 +123,11 @@
 
 <table style="width: 100.0%;" >
    <tr vertical-align = middle>
-   <td style="width:22.0%; font-size: 14px" align="right" >
+   <td style="width:24.0%; font-size: 14px" align="right" >
        <a href="{% url url_seiteslist topic seite.4 %}" >
        <b style = "font-size: 14px" > {{ seite.3 }} </b></a>
        </td>
-   <td style="width:3.0%"> </td>
+   <td style="width:2.0%"> </td>
    <td align="left" style = "font-size: 14px">{{ seite.2 }}  </td>
    </tr>
 </table>

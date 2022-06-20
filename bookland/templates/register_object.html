@@ -114,10 +114,10 @@
        <a href="{% url url_object item.1 %}" ><b style = "font-size: 14px" > [X] </b></a> </td>
 
    {% if item.1 == object_name %}
-   <td style="width:75.0%; color: yellow"> <b>{{ item.1 }}</b> </td>
+   <td style="width:75.0%; font-size: 15px; color: yellow"> <b>{{ item.1 }}</b> </td>
    <td align="right" style = "font-size: 15px; color: yellow"> <b> {{ item.2 }} </b></td>
    {% else %}
-   <td style="width:75.0%; color: white"> <b>{{ item.1 }}</b> </td>
+   <td style="width:75.0%; font-size: 15px; color: white"> <b>{{ item.1 }}</b> </td>
    <td align="right" style = "font-size: 15px; color: white"> <b> {{ item.2 }} </b></td>
    {% endif %}
 
@@ -145,7 +145,7 @@
 <table style="width: 100.0%; line-height: 1.2; vertical-align: baseline;" >
    <tr>
    <td style="width:10.0%; font-size: 14px" align="right" >
-       <a href="{% url url_register reg_name.id %}" >
+       <a href="{% url url_register reg_name.id 0 %}" >
        <b style = "font-size: 14px" > [X] </b></a> </td>
    <td style="width:3.0%"> </td>
    <td align="left" style = "font-size: 14px">

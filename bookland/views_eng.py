@@ -63,7 +63,7 @@ def seites_eng(request, topic):
         s.append(0)
         s.append(item.name_eng1)
         if ": cave town" in item.name_eng1:
-            s.append(".:")               #2
+            s.append("___")               #2
         else:
             s.append("")                 #2
         section_list.append(s)
@@ -83,7 +83,7 @@ def seites_eng(request, topic):
             'section_list': section_list,
             'topic': topic, 'seites': seites,
             'name': 1,
-            'illustration': "Dawn at Cape Kule Burun (Mangup area)"
+            'illustration': "Dawn at Kule Burun Cape (Mangup area)"
 
                   }
            )
@@ -202,10 +202,10 @@ def register_art_eng(request, art):
         art_name = "Geographical names"
     if art == "2":
         art_key = "Settlements"
-        art_name = "Settlements"
+        art_name = "Modern Settlements"
     if art == "3":
         art_key = "Tourist object"
-        art_name = "Tourist Facilities"
+        art_name = "Tourist Objects"
 
     reg_name_list = Register_eng.objects.all().filter(reg_art = art_key)
     num_name = len(reg_name_list)
@@ -241,7 +241,7 @@ def register_art_eng(request, art):
 
             'art_object': art_object,
             'art_object_num': art_object_num,
-            'illustration': "Dawn at Cape Kule Burun (Mangup area)",
+            'illustration': "Dawn at Kule Burun Cape (Mangup area)",
 
         }
            )
@@ -293,20 +293,22 @@ def register_object_eng(request, obj,):
             'num_name_art': num_name_art,
             'art_object': art_object,
             'art_object_num': art_object_num,
-            'illustration': "Dawn at Cape Kule Burun (Mangup area)",
+            'illustration': "Dawn at Kule Burun Cape (Mangup area)",
 
         }
            )
 # ================== END register_object_eng ===========================
 
 # ================== REGISTER SEITES_eng ===========================
-def register_seites_eng(request, pk,):
+def register_seites_eng(request, pk_top, pk_site):
+    # pk_top - id об'єкта Регистру!
+    # pk_site - id сторінки з ЦУМу!
 
-    reg_seites = Register_eng.objects.get(pk = pk) # сторінки з вказаним об'єктом
+    reg_seites = Register_eng.objects.get(pk = pk_top) # сторінки з вказаним об'єктом
     reg_name = reg_seites.reg_f_name           # найменування об'єкту
-    reg_numbers =  reg_seites.reg_numbers          # нумера сторінок з вказаним об'єктом
+    reg_numbers =  reg_seites.reg_numbers      # нумера сторінок з вказаним об'єктом
     reg_art =  reg_seites.reg_art              # вид показчика об'єкта
-    reg_pk = pk                                # код об'єкта
+    reg_pk = pk_top                            # id об'єкта Регистру
     reg_object = reg_seites.reg_s_name         # тип об'єкта
 
     reg_object_list = Register_eng.objects.all().filter(reg_s_name = reg_object) # список об'єктів заданого типу
@@ -315,7 +317,12 @@ def register_seites_eng(request, pk,):
 
     seites = reg_seites.reg_seites.all()
     seites_list = [[], ]
+    seites_first = 1
+    i = 0
     for item in seites:
+        i = i + 1
+        if item.id == int(pk_site):
+            seites_first = i
         l = []
         l.append(0)
         l.append(item.name_eng1)  # 1
@@ -324,7 +331,7 @@ def register_seites_eng(request, pk,):
         l.append(item.id)  # 4
         l.append(item.image_seites)  # 5
         seites_list.append(l)
-    seites_list = seites_list[1:]
+    seites_list = seites_list[seites_first:]
 
     return render(
         request, 'register_seites.html',

@@ -64,8 +64,8 @@ def seites(request, topic):
         s = []
         s.append(0)
         s.append(item.name_seites1)     #1
-        if ": печерне місто" in item.name_seites1:
-            s.append(".:")               #2
+        if "БАКЛА" in item.name_seites1:
+            s.append("___")               #2
         else:
             s.append("")                 #2
         section_list.append(s)
@@ -212,8 +212,6 @@ def register_art(request, art):
 
     art_object = set(())
     for object in reg_name_list:
-        # object_typ_list = Register.object_typ_set.all
-        # object_typ = object_typ_list.ukr
         art_object.add(object.reg_s_name)
 
     art_object_num = [[], ]
@@ -300,13 +298,15 @@ def register_object(request, obj,):
 # ================== END register_object ===========================
 
 # ================== REGISTER SEITES ===========================
-def register_seites(request, pk,):
+def register_seites(request, pk_top, pk_site):
+    # pk_top - id об'єкта Регистру!
+    # pk_site - id сторінки з ЦУМу!
 
-    reg_seites = Register.objects.get(pk = pk) # записи сторінок з вказаним об'єктом pk
+    reg_seites = Register.objects.get(pk = pk_top) # записи сторінок з вказаним об'єктом pk
     reg_name = reg_seites.reg_f_name           # найменування об'єкту
     reg_numbers =  reg_seites.reg_numbers      # нумера сторінок з вказаним об'єктом
     reg_art =  reg_seites.reg_art              # вид показчика об'єкта
-    reg_pk = pk                                # id-код об'єкта
+    reg_pk = pk_top                            # id об'єкта Регистру
     reg_object = reg_seites.reg_s_name         # тип об'єкта
 
     reg_object_list = Register.objects.all().filter(reg_s_name = reg_object) # список об'єктів заданого типу
@@ -315,7 +315,12 @@ def register_seites(request, pk,):
 
     seites = reg_seites.reg_seites.all()
     seites_list = [[], ]
+    seites_first = 1
+    i = 0
     for item in seites:
+        i = i + 1
+        if item.id == int(pk_site):
+            seites_first = i
         l = []
         l.append(0)
         l.append(item.name_seites1)  # 1
@@ -324,7 +329,7 @@ def register_seites(request, pk,):
         l.append(item.id)            # 4
         l.append(item.image_seites)  # 5
         seites_list.append(l)
-    seites_list = seites_list[1:]
+    seites_list = seites_list[seites_first:]
 
     return render(
         request, 'register_seites.html',
@@ -345,6 +350,7 @@ def register_seites(request, pk,):
             'reg_pk': reg_pk,
             'seites_list': seites_list,
             'site': "стор.", 'zoom': "Збільшити/Переклад",
+            'seites_first': seites_first, 'i': i,  # ??????
 
 
         }

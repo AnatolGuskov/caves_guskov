@@ -45,7 +45,7 @@
     .side_right_seit {
         background: none;
         position: absolute;
-        left:101.5%;       top:18.0%;
+        left:101.5%;       top:19.0%;
         width: 37.0%;   height: 5.0%;
         color: yellow;
     }
@@ -56,7 +56,7 @@
         white-space: pre-line;
         overflow-y: auto; /* Add vertical scrollbar */
         position: absolute;
-        left:101.5%;       top:19.0%;
+        left:101.5%;       top:20.0%;
         width: 37.0%;   height: 80.0%;
         color: white;
     }
@@ -85,7 +85,7 @@
        <h5> <a href="{% url url_seiteslist topic seite_id %}">
            <b>[X]&nbsp;</b></a><b>{{back}}</b></h5>
     {% else %}
-       <h5> <a href="{% url url_register quelle_zoom %}">
+       <h5> <a href="{% url url_register quelle_zoom seite_id %}">
            <b>[X]&nbsp;</b></a><b>{{back}}</b></h5>
     {% endif %}
 

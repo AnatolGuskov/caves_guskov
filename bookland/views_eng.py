@@ -98,11 +98,12 @@ def seites_list_eng(request, topic, pk):
     if topic == "1":
         seites = Bookseites.objects.all().filter(image_seites__gte=pk_site)[:10]
         menu = Bookseites.objects.all()
+        bookcontents = "Book content"
     else:
         seites = Bookseites.objects.all().filter(
             Q(name_eng1=topic, image_seites__gte=pk_site) | Q(name_seites1=topic, image_seites__gte=pk_site))[:10]
-        menu = Bookseites.objects.all().filter(
-            Q(name_eng1=topic) | Q(name_seites1=topic))
+        menu = Bookseites.objects.all().filter(Q(name_eng1=topic) | Q(name_seites1=topic))
+        bookcontents = "Section content"
 
     seites_list = [[]]
     for item in seites:
@@ -151,7 +152,7 @@ def seites_list_eng(request, topic, pk):
             'seites_menu': seites_menu,
             'seit_max': seit_max,
             'text': text, 'site': "pages", 'zoom': "Zoom/Translate",
-            'bookcontents': "Contents of the Book",
+            'bookcontents': bookcontents,
             'seit_pk': pk, 'topic': topic,
         }
            )

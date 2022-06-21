@@ -40,6 +40,7 @@ class Register(models.Model):
         ordering = ["reg_art", "reg_f_name"]
     reg_art = models.CharField(max_length=30,)
     reg_f_name = models.CharField(max_length=100, null = True, blank = True)
+    reg_f_eng = models.ForeignKey('Register_eng', on_delete=models.SET_NULL, null=True)
     reg_s_name = models.CharField(max_length=100, null=True, blank=True)
     object_typ = models.ManyToManyField(Object_typ, )
     reg_numbers = models.CharField(max_length=100, null=True, blank=True)
@@ -52,21 +53,21 @@ class Register(models.Model):
     #     return reverse('poems:genre-detail', args=[str(self.id)])
 
 # ========================= BOOKSEITES_ENG =======
-# class Bookseites_eng(models.Model):
-#     class Meta:
-#         ordering = ["image_seites"]
-#     seites = models.CharField(max_length=10,)
-#     name_seites1 = models.CharField(max_length=100, null = True, blank = True)
-#     name_seites = models.CharField(max_length=100, null = True, blank = True)
-#     name_step = models.CharField(max_length=1, null = True, blank = True)
-#     image_seites = models.CharField(max_length=30, null = True, blank = True)
-#     content_seite = models.TextField(null = True, blank = True)
-#
-#     def __str__(self):
-#         return str(self.seites + ' ' + self.name_seites)
-#
-#     # def get_absolute_url(self):
-#     #     return reverse('poems:genre-detail', args=[str(self.id)])
+class Bookseites_eng(models.Model):
+    class Meta:
+        ordering = ["image_seites"]
+    seites = models.CharField(max_length=10,)
+    name_seites1 = models.CharField(max_length=100, null = True, blank = True)
+    name_seites = models.CharField(max_length=100, null = True, blank = True)
+    name_step = models.CharField(max_length=1, null = True, blank = True)
+    image_seites = models.CharField(max_length=30, null = True, blank = True)
+    content_seite = models.TextField(null = True, blank = True)
+
+    def __str__(self):
+        return str(self.seites + ' ' + self.name_seites)
+
+    # def get_absolute_url(self):
+    #     return reverse('poems:genre-detail', args=[str(self.id)])
 
 # ========================= REGISTER =======
 class Register_eng(models.Model):
@@ -82,7 +83,7 @@ class Register_eng(models.Model):
 
 
     def __str__(self):
-        return str(self.reg_f_name)
+        return str(self.reg_art + ', ' + self.reg_f_name)
 
 # ========================= TEXT =======
 class Text_site(models.Model):

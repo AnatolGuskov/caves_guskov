@@ -101,10 +101,12 @@ def seites_list(request, topic, pk):
     if topic == "1":
         seites = Bookseites.objects.all().filter(image_seites__gte=pk_site)[:10]
         menu = Bookseites.objects.all()
+        bookcontents = "Зміст книги"
     else:
         seites = Bookseites.objects.all().filter(
             Q(name_eng1=topic, image_seites__gte=pk_site) | Q(name_seites1=topic, image_seites__gte=pk_site))[:10]
         menu = Bookseites.objects.all().filter(Q(name_eng1=topic) | Q(name_seites1=topic))
+        bookcontents = "Зміст розділу"
 
     seites_list = [[]]
     for item in seites:
@@ -153,7 +155,7 @@ def seites_list(request, topic, pk):
             'seites_menu': seites_menu,
             'seit_max': seit_max,
             'text': text, 'site': "стор.", 'zoom': "Збільшити/Переклад",
-            'bookcontents': "Зміст Книги",
+            'bookcontents': bookcontents,
             'seit_pk': pk, 'topic': topic,
         }
            )
@@ -355,8 +357,53 @@ def register_seites(request, pk_top, pk_site):
             'site': "стор.", 'zoom': "Збільшити/Переклад",
             'seites_first': seites_first, 'i': i,  # ??????
             'seites_trans': seites_trans,
-
-
         }
            )
 # ================== END register_seites ===========================
+
+
+# ================== DICTIONARY ===================================
+def dictionary (request, dict_lang):
+    wort_list = Register.objects.all()
+
+    wort_dict =[[]]
+    dict_tytle = ""
+
+    if dict_lang == "1":   # ukrainish
+        for wort in wort_list:
+            w = []
+            w.append(0)
+            w.append (wort.reg_f_name)
+            w.append (wort.reg_f_eng.reg_f_name)   #2 english
+            wort_dict.append(w)
+        wort_dict = wort_dict[1:]
+        wort_dict.sort()
+        dict_tytle = "Топонімічний та термінологічний Словник"
+        template = "base_generic.html"
+
+    if dict_lang == "2":     # english
+        for wort in wort_list:
+            w = []
+            w.append(0)
+            w.append(wort.reg_f_eng.reg_f_name)  #1 english
+            w.append (wort.reg_f_name)
+            wort_dict.append(w)
+        wort_dict = wort_dict[1:]
+        wort_dict.sort()
+        dict_tytle = "Toponymic and terminological Dictionary"
+        template = "base_generic_eng.html"
+
+
+    return render(
+        request, 'dictionary.html',
+        context={
+            'template': template,
+            'language': "UKR",
+            'eng': "англійська", 'ukr': "українська",
+
+            'lang': dict_lang,
+            'wort_dict': wort_dict,
+            'dict_tytle': dict_tytle,
+
+        }
+    )

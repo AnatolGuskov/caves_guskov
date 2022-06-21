@@ -34,4 +34,7 @@ urlpatterns = [
     path('register/seites/<pk_top> <pk_site>', views.register_seites, name='register-seites'),
     path('eng/register/seites/<pk_top> <pk_site>', views_eng.register_seites_eng, name='register-seites_eng'),
 
+    path('dictionary/<dict_lang>', views.dictionary, name='dictionary'),
+    path('eng/dictionary/<dict_lang>', views.dictionary, name='dictionary_eng'),
+
 ]

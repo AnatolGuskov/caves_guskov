@@ -9,8 +9,4 @@ class Migration(migrations.Migration):
         ('bookland', '0007_bookseites_content_eng_bookseites_name_eng_and_more'),
     ]
 
-    operations = [
-        migrations.DeleteModel(
-            name='Bookseites_eng',
-        ),
-    ]
+

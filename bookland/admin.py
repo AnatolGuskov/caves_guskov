@@ -6,7 +6,7 @@ from .models import Bookseites, Bookseites_eng, Register, Register_eng, \
 # admin.site.register(Bookseites)
 
 class BookseitesAdmin(admin.ModelAdmin):
-    list_display = ('id', 'seites', 'name_seites1', 'name_seites', 'image_seites', )
+    list_display = ('id', 'control', 'seites', 'name_seites1', 'name_seites', 'image_seites', )
 admin.site.register(Bookseites, BookseitesAdmin)
 
 class RegisterAdmin(admin.ModelAdmin):

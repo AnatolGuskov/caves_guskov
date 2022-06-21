@@ -368,6 +368,8 @@ def dictionary (request, dict_lang):
 
     wort_dict =[[]]
     dict_tytle = ""
+    language = ""
+    len_dict = 0
 
     if dict_lang == "1":   # ukrainish
         for wort in wort_list:
@@ -380,6 +382,8 @@ def dictionary (request, dict_lang):
         wort_dict.sort()
         dict_tytle = "Топонімічний та термінологічний Словник"
         template = "base_generic.html"
+        language = "UKR"
+        len_dict = len(wort_dict)
 
     if dict_lang == "2":     # english
         for wort in wort_list:
@@ -392,18 +396,21 @@ def dictionary (request, dict_lang):
         wort_dict.sort()
         dict_tytle = "Toponymic and terminological Dictionary"
         template = "base_generic_eng.html"
+        language = "ENG"
+        len_dict = len(wort_dict)
 
 
     return render(
         request, 'dictionary.html',
         context={
             'template': template,
-            'language': "UKR",
+            'language': language,
             'eng': "англійська", 'ukr': "українська",
 
             'lang': dict_lang,
             'wort_dict': wort_dict,
             'dict_tytle': dict_tytle,
+            'len_dict': len_dict,
 
         }
     )

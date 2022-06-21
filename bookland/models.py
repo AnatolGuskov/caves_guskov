@@ -27,7 +27,7 @@ class Bookseites(models.Model):
     name_eng1 = models.CharField(max_length=100, null=True, blank=True)
     name_eng = models.CharField(max_length=100, null=True, blank=True)
     content_eng = models.TextField(null=True, blank=True)
-    control = models.CharField(max_length=5, null = True, blank = True)
+    contr = models.CharField(max_length=5, null = True, blank = True)
 
     def __str__(self):
         return str(self.seites + ' ' + self.name_seites)

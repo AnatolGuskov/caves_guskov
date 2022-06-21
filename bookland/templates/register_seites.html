@@ -68,8 +68,8 @@
 
 <div class="bottom-left">
     <p style = "color: white"><b> {{language}} </b></p>
-    <a class="button" href="{% url 'bookland:register-seites' reg_pk 0 %}">&nbsp;{{ukr}}&nbsp;</a> <br>
-    <a class="button" href="{% url 'bookland:register-seites_eng' reg_pk 0 %}">&nbsp;{{eng}}&nbsp;&nbsp;&nbsp;</a>
+    <a class="button" href="{% url 'bookland:register-seites' reg_pk seites_trans %}">&nbsp;{{ukr}}&nbsp;</a> <br>
+    <a class="button" href="{% url 'bookland:register-seites_eng' reg_pk seites_trans %}">&nbsp;{{eng}}&nbsp;&nbsp;&nbsp;</a>
 </div> <!-- bottom-left -->
 
 
@@ -109,8 +109,7 @@
 
 
 <div class="side_right_tytle">
-    <p>{{seites_first}}</p>
-        <h5 style="font-size: 16px"> <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{object_name}} - {{num_name}}</b> </h5>
+      <h5 style="font-size: 16px"> <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{object_name}} - {{num_name}}</b> </h5>
 </div>  <!-- side_right_tytle -->
 
 <div class="side_right_register">

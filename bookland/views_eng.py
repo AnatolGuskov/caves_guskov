@@ -318,9 +318,12 @@ def register_seites_eng(request, pk_top, pk_site):
     seites = reg_seites.reg_seites.all()
     seites_list = [[], ]
     seites_first = 1
+    seites_trans = 0
     i = 0
     for item in seites:
         i = i + 1
+        if i == 1:
+            seites_trans = item.id
         if item.id == int(pk_site):
             seites_first = i
         l = []
@@ -332,6 +335,7 @@ def register_seites_eng(request, pk_top, pk_site):
         l.append(item.image_seites)  # 5
         seites_list.append(l)
     seites_list = seites_list[seites_first:]
+
 
     return render(
         request, 'register_seites.html',
@@ -352,6 +356,7 @@ def register_seites_eng(request, pk_top, pk_site):
             'reg_pk': reg_pk,
             'seites_list': seites_list,
             'site': "pages", 'zoom': "Zoom/Translate",
+            'seites_trans': seites_trans,
 
 
         }

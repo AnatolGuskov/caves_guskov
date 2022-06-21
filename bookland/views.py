@@ -64,7 +64,7 @@ def seites(request, topic):
         s = []
         s.append(0)
         s.append(item.name_seites1)     #1
-        if "БАКЛА" in item.name_seites1:
+        if ": печерне місто" in item.name_seites1:
             s.append("___")               #2
         else:
             s.append("")                 #2
@@ -316,9 +316,12 @@ def register_seites(request, pk_top, pk_site):
     seites = reg_seites.reg_seites.all()
     seites_list = [[], ]
     seites_first = 1
+    seites_trans = 0
     i = 0
     for item in seites:
         i = i + 1
+        if i == 1:
+            seites_trans = item.id
         if item.id == int(pk_site):
             seites_first = i
         l = []
@@ -351,6 +354,7 @@ def register_seites(request, pk_top, pk_site):
             'seites_list': seites_list,
             'site': "стор.", 'zoom': "Збільшити/Переклад",
             'seites_first': seites_first, 'i': i,  # ??????
+            'seites_trans': seites_trans,
 
 
         }

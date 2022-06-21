@@ -8,21 +8,21 @@ class Migration(migrations.Migration):
     dependencies = [
         ('bookland', '0006_rename_object_object_typ_alter_object_typ_options_and_more'),
     ]
-    #
-    # operations = [
-    #     migrations.AddField(
-    #         model_name='bookseites',
-    #         name='content_eng',
-    #         field=models.TextField(blank=True, null=True),
-    #     ),
-    #     migrations.AddField(
-    #         model_name='bookseites',
-    #         name='name_eng',
-    #         field=models.CharField(blank=True, max_length=100, null=True),
-    #     ),
-    #     migrations.AddField(
-    #         model_name='bookseites',
-    #         name='name_eng1',
-    #         field=models.CharField(blank=True, max_length=100, null=True),
-    #     ),
-    # ]
+
+    operations = [
+        migrations.AddField(
+            model_name='bookseites',
+            name='content_eng',
+            field=models.TextField(blank=True, null=True),
+        ),
+        migrations.AddField(
+            model_name='bookseites',
+            name='name_eng',
+            field=models.CharField(blank=True, max_length=100, null=True),
+        ),
+        migrations.AddField(
+            model_name='bookseites',
+            name='name_eng1',
+            field=models.CharField(blank=True, max_length=100, null=True),
+        ),
+    ]
